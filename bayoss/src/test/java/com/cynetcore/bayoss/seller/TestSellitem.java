@@ -1,5 +1,6 @@
 package com.cynetcore.bayoss.seller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cynetcore.bayoss.dao.SellerItemDao;
+import com.cynetcore.bayoss.util.SellerFileUploader;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,6 +20,9 @@ public class TestSellitem {
 	@Autowired
 	private SellerItemDao itemDao;
 	
+//	@Autowired
+//	private SellerFileUploader uploader;
+	
 	//아이템 등록
 	@Test
 	public void testItemInsert() {
@@ -25,6 +30,17 @@ public class TestSellitem {
 		boolean result = itemDao.itemInsert(sellerItemVo);
 		System.out.println("testItemInsert, result : " + result);
 	}
+	
+	//업로드 테스트
+//	@Test
+//	public void testupload() {
+//		try {
+//			uploader.fileUpload(null);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 	
 	//아이템 업데이트

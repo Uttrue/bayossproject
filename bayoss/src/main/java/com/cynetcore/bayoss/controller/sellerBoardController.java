@@ -21,7 +21,7 @@ public class sellerBoardController {
 	//셀러 물품 등록 페이지
 	@RequestMapping(value = "/sellerboardform", method = RequestMethod.GET)
 	public String sellinsert() {
-	
+		System.out.println("sellerboardform");
 		return "sellerboard/sellerboardform";
 	}
 	
@@ -35,8 +35,12 @@ public class sellerBoardController {
 			String originalFilename = file.getOriginalFilename();
 			System.out.println("sellinsertrun, originalFilename" + originalFilename);
 			byte[] fileData = file.getBytes();
-			String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
+			String imagename =  SellerFileUploader.fileUpload(originalFilename, "/bayoss/seller",file);
 			itemVo.setItem_mainimage(imagename);
+			System.out.println("sellinsertrun, imagename" + imagename);
+			System.out.println("sellinsertrun, itemVo" + itemVo);
+	//		String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
+	//		itemVo.setItem_mainimage(imagename);
 			//FTP 서버로 파일 전송하는것 만들기
 		}
 		
