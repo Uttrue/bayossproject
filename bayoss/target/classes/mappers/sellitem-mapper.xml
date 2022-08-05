@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cynetcore.bayoss.mappers.sellitem">
+ 	<!-- 아이템 등록 -->
+ 	<insert id="itemInsert">
+ 		insert into tbl_sell_item(sId, item_title, item_cost, item_start_date, item_end_date,item_mainimage,item_content)
+		values(#{sid},#{item_title},#{item_cost},#{item_start_date, jdbcType=DATE},#{item_end_date, jdbcType=DATE},
+				#{item_mainimage, jdbcType=VARCHAR}, #{item_content})
+ 	</insert>
+ 	
+ 	
+ 	<!-- 아이템 정보 조회 -->
+	<select id="itemInfo" resultType="SellerItemVo">
+		select * from tbl_sell_item
+		where ino = #{ino}
+	</select>
+	
+	<!-- 아이템 정보 업데이트 -->
+	<update id="itemUpdate">
+		update tbl_sell_item set
+			item_title = #{item_title},
+			item_cost = #{item_cost},
+			item_start_date = #{item_start_date},
+			item_end_date = #{item_end_date},
+			item_mainimage = #{item_mainimage},
+			item_content = #{item_content}
+		where ino = #{ino}
+	</update>
+	
+	<!-- 아이템 삭제 -->
+	<update id="itemDelete">
+		update tbl_sell_item set
+			item_status = #{item_status}
+		where ino = #{ino}
+	</update>
+ 	
+ 	<!-- 셀러 아이템 리스트 조회 -->
+ 	<select id="itemList" resultType="SellerItemVo">
+ 		select * from tbl_sell_item
+ 		where sId = #{sid}
+ 	</select>
+ 	
+ 	<!-- 아이템 전체 리스트 조회 -->
+ 	<select id="itemListhole" resultType="SellerItemVo">
+ 		select * from tbl_sell_item
+ 	</select>
+ 	
+ 	
+ </mapper>

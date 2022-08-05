@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cynetcore.bayoss.mappers.user">
+ 	<!-- 유저 회원가입 -->
+ 	<insert id="userInsert">
+ 		insert into tbl_user(cId, cPw, email, cellphone)
+		values(#{cid},#{cpw},#{email},#{cellphone})
+ 	</insert>
+ 	
+ 	<!-- 유저 아이디 중복 조회 -->
+ 	<select id="isuserexist" resultType="int">
+ 		select count(*) from tbl_user
+		where cId = #{cid}
+ 	</select>
+ 	
+ 	<!-- 유저 정보 조회 -->
+	<select id="userInfo" resultType="userVo">
+		select * from tbl_user
+		where cId = #{cid}
+	</select>
+	
+	<!-- 유저 정보 업데이트 -->
+	<update id="userUpdate">
+		update tbl_user set
+			cPw = #{cpw},
+			email = #{email},
+			cellphone = #{cellphone}
+		where cId = #{cid}
+	</update>
+	
+	<!-- 유저 삭제 -->
+	<update id="userDelete">
+		update tbl_user set
+			status = #{status}
+		where cId = #{cid}
+	</update>
+ 	
+ 	<!-- 유저 리스트 조회 -->
+ 	<select id="userList" resultType="userVo">
+ 		select * from tbl_user
+ 	</select>
+ 	
+ </mapper>
