@@ -1,9 +1,16 @@
 package com.cynetcore.bayoss.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cynetcore.bayoss.service.SellerItemService;
@@ -17,6 +24,7 @@ public class sellerBoardController {
 	@Autowired
 	private SellerItemService itemService;
 	
+	final static String URLPATH = "bayoss/seller";
 
 	//셀러 물품 등록 페이지
 	@RequestMapping(value = "/sellerboardform", method = RequestMethod.GET)
@@ -34,18 +42,42 @@ public class sellerBoardController {
 		if(size != 0) {
 			String originalFilename = file.getOriginalFilename();
 			System.out.println("sellinsertrun, originalFilename" + originalFilename);
-			byte[] fileData = file.getBytes();
-			String imagename =  SellerFileUploader.fileUpload(originalFilename, "/bayoss/seller",file);
+	//		byte[] fileData = file.getBytes();
+			SellerFileUploader.Connect();
+			String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
 			itemVo.setItem_mainimage(imagename);
 			System.out.println("sellinsertrun, imagename" + imagename);
 			System.out.println("sellinsertrun, itemVo" + itemVo);
 	//		String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
-	//		itemVo.setItem_mainimage(imagename);
+			itemVo.setItem_mainimage(imagename);
 			//FTP 서버로 파일 전송하는것 만들기
 		}
 		
-	//	boolean result = itemService.itemInsert(itemVo);
+		boolean result = itemService.itemInsert(itemVo);
 		return "redirect:/sellerboard/sellList";
+	}
+	
+	//썸머노트 이미지 업로드
+	@ResponseBody
+	@RequestMapping(value = "/uploadSummernoteImageFile", method = RequestMethod.POST)
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile file) throws Exception{
+		String originalFilename = file.getOriginalFilename();
+		SellerFileUploader.Connect();
+		String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
+		return imagename;
+	}
+	
+	//이미지 출력하기
+	@ResponseBody
+	@RequestMapping(value = "/displayimages", method = RequestMethod.GET)
+	public byte[] displayimages(String filename) throws Exception{
+		SellerFileUploader.Connect();
+		InputStream fis = SellerFileUploader.download(URLPATH, filename);
+	//	FileInputStream fis = new FileInputStream("/"+URLPATH + filename);
+		System.out.println("displayimages : " +fis );
+		byte[] data = IOUtils.toByteArray(fis);
+		fis.close();
+		return data;
 	}
 	
 	//셀러 물품 리스트

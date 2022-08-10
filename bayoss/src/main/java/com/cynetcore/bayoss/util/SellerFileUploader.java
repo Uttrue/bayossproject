@@ -8,7 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import com.jcraft.jsch.Channel;
@@ -16,189 +19,100 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
 
 public class SellerFileUploader {
-	private static Session jschSession = null;
+	private static Session session = null;
     private static Channel channel = null;
     private static ChannelSftp channelSftp = null;
+    final static String sftpIp = "dev.harbormax.com";
+    final static int sftpPort = 22;
+	final static String sftpUsername = "harbormax";
+	final static String sftpPassword = "harbor777**";
 	
-	public static String fileUpload(String fileName, String dirPath,MultipartFile file) throws Exception {
-		String uuid = UUID.randomUUID().toString();
-		String uploadFileName = uuid + "_" + fileName;
-		boolean isSuccess = false;
-		FileInputStream fis = null;
+	public static void Connect() throws Exception {
+		
+		 JSch jsch = new JSch();
 		try {
-			connectSFTP();
-			 // 대상폴더 이동
-			channelSftp.cd(dirPath);
+			//접속
+			//세션객체 생성 ( user , host, port )     
+            session = jsch.getSession(sftpUsername, sftpIp,sftpPort);
 
-			File convFile = new File(file.getOriginalFilename());
-			convFile.createNewFile();
-            fis = new FileInputStream(convFile);
-//수정하기
-            // 파일 업로드
-            channelSftp.put(fis, uploadFileName);
-            isSuccess = true;
-            System.out.println("uploadFileName : " + uploadFileName);
-         //  System.out.println("file upload  : " +   file.getAbsolutePath() + ">>" + dirPath + "/" + uploadFileName);
-           disconnectSFTP();
-		} catch (Exception e) {
+            //password 설정
+            session.setPassword(sftpPassword);
+
+            //세션관련 설정정보 설정
+            java.util.Properties config = new java.util.Properties();
+
+            //호스트 정보 검사하지 않는다.
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
+
+            //접속
+            session.connect();
+           
+            //sftp 채널 접속
+            channel = session.openChannel("sftp");
+            channel.connect();
+            System.out.println("접속 됨");
+            channelSftp = (ChannelSftp) channel;
+            //파일 업로드
+          //  upload(dirPath,file,uploadFileName);
+            
+            //접속 종료
+		} catch (JSchException e) {
 			e.printStackTrace();
 		} 
-		return uploadFileName;
+		
+		//return uploadFileName;
 	}
 	
-	public static void connectSFTP() throws Exception {
-		String user = "harbormax";
-		String pwd = "harbor777**";
-        // JSch 객체를 생성
-        JSch jsch = new JSch();
+	 // 단일 파일 업로드 
+    public static String upload(String fileName, String dirPath,MultipartFile file) throws IOException{
+        InputStream in = null;
+        String uuid = UUID.randomUUID().toString();
+		String uploadFileName = uuid + "_" + fileName;
+        try{ //파일을 가져와서 inputStream에 넣고 저장경로를 찾아 put 
+        	
+            in = file.getInputStream();
+            channelSftp.cd(dirPath);
+            channelSftp.put(in,uploadFileName);
+        }catch(SftpException se){
+            se.printStackTrace();
+        }catch(FileNotFoundException fe){
+            fe.printStackTrace();
+        }finally{
+            try{
+                in.close();
+            } catch(IOException ioe){
+                ioe.printStackTrace();
+            }
+        }
+        return uploadFileName;
+    }
 
-        // JSch 세션 객체를 생성 (사용자 이름, 접속할 호스트, 포트 전달)
-        jschSession = jsch.getSession(user, "dev.harbormax.com", 22);
+    // 단일 파일 다운로드 
+    public static InputStream download(String dir, String fileName){
+        InputStream in = null;
+       // String path = "...";
+        try{ //경로탐색후 inputStream에 데이터를 넣음
+            channelSftp.cd(dir);
+            in = channelSftp.get(fileName);
 
-        // 패스워드 설정
-        jschSession.setPassword(pwd);
+        }catch(SftpException se){
+            se.printStackTrace();
+        }
 
-        // 기타설정 적용
-        Properties config = new Properties();
-        config.put("StrictHostKeyChecking", "no");
-        jschSession.setConfig(config);
+        return in;
+    }
 
-        // 접속
-        jschSession.connect();
-
-        // sftp 채널 열기
-        channel = jschSession.openChannel("sftp");
-
-        // sftp 채널 연결
-        channelSftp = (ChannelSftp) channel;
-        channelSftp.connect();
+    // 파일서버와 세션 종료
+    public static void disconnect(){
+        channelSftp.quit();
+        session.disconnect();
     }
 	
-	
-	 /**
-     * SFTP 접속해제
-     */
-    public static void disconnectSFTP() {
-        try {
-            if (channelSftp != null && channelSftp.isConnected()) {
-                channelSftp.disconnect();
-            }
-        } catch (Exception e) {
-        } finally {
-            channelSftp = null;
-        }
-
-        try {
-            if (channel != null && channel.isConnected()) {
-                channel.disconnect();
-            }
-        } catch (Exception e) {
-        } finally {
-            channel = null;
-        }
-
-        try {
-            if (jschSession != null && jschSession.isConnected()) {
-                jschSession.disconnect();
-            }
-        } catch (Exception e) {
-        } finally {
-            jschSession = null;
-        }
-    }
-
-    /**
-     * FileInputStream 객체 닫기
-     *
-     * @param fis
-     */
-    private void close(FileInputStream fis) {
-        try {
-            if (fis != null) {
-                fis.close();
-            }
-        } catch (Exception e) {
-        } finally {
-            fis = null;
-        }
-    }
-
-    /**
-     * BufferedInputStream 객체 닫기
-     *
-     * @param bis
-     */
-    private void close(BufferedInputStream bis) {
-        try {
-            if (bis != null) {
-                bis.close();
-            }
-        } catch (Exception e) {
-        } finally {
-            bis = null;
-        }
-    }
-
-    /**
-     * FileOutputStream 객체 닫기
-     *
-     * @param fos
-     */
-    private void close(FileOutputStream fos) {
-
-        try {
-            if (fos != null) {
-                fos.flush();
-            }
-        } catch (Exception e) {
-        }
-
-        try {
-            if (fos != null) {
-                fos.close();
-            }
-        } catch (Exception e) {
-        } finally {
-            fos = null;
-        }
-    }
-
-    /**
-     * BufferedOutputStream 객체 닫기
-     *
-     * @param bos
-     */
-    private void close(BufferedOutputStream bos) {
-
-        try {
-            if (bos != null) {
-                bos.flush();
-            }
-        } catch (Exception e) {
-        }
-
-        try {
-            if (bos != null) {
-                bos.close();
-            }
-        } catch (Exception e) {
-        } finally {
-            bos = null;
-        }
-    }
-	
-	/*private static void showServerReply(FTPClient ftpClient) {
-		String[] replies = ftpClient.getReplyStrings();
-		if(replies != null && replies.length > 0) {
-			for(String aReply : replies) {
-				System.out.println("SERVER : " + aReply);
-			}
-		}
-	}*/
-	
-	
+    
 	public static Boolean deleteFile(String filename) {
 		File f = new File(filename);
 		if(f.exists()) {

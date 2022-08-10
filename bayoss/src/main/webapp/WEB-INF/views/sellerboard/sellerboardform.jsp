@@ -26,10 +26,9 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-8">
 				<h1>물품 등록</h1>
-
 				<form role="writeForm" action="/sellerboard/sellinsertrun" method="post"
 					id="frmCreate" enctype="multipart/form-data" accept-charset="UTF-8">
-
+					<input type="hidden" name="sid" value="${sellerVo.sid}">
 					<div class="form-group">
 						<label for="item_title">물품명</label> <input type="text"
 							class="form-control" id="item_title" name="item_title" />
@@ -108,7 +107,31 @@
 						// 추가한 폰트사이즈
 						fontSizes : [ '8', '9', '10', '11', '12', '14', '16',
 								'18', '20', '22', '24', '28', '30', '36', '50',
-								'72' ]
+								'72' ],
+						// 이미지 업로드시
+						callbacks : {
+							onImageUpload : function(files, editor, welEditable){
+								console.log("rData 피드백 전: " ,files[0]);
+								var file = files[0];
+								var formData = new FormData();
+								formData.append("file", file);
+								
+								$.ajax({
+									processData : false,
+									contentType : false,
+									type : "post",
+									async : "true",
+									url : "/sellerboard/uploadSummernoteImageFile",
+									data : formData,
+									success : function(rData){
+										console.log("rData 피드백 : " , rData);
+										/*  $('.summernote').append("<p><img src='/sellerboard/displayimages?filename=" + rData+"'></p>"); */
+										$('.summernote').summernote('editor.insertImage',
+												"/sellerboard/displayimages?filename=" + rData);
+									}
+								});
+							}
+						}
 					});
 
 	// 썸머노트 이미지 업로드
