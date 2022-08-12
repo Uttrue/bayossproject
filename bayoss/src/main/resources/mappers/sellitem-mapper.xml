@@ -5,9 +5,10 @@
  <mapper namespace="com.cynetcore.bayoss.mappers.sellitem">
  	<!-- 아이템 등록 -->
  	<insert id="itemInsert">
- 		insert into tbl_sell_item(sId, item_title, item_cost, item_start_date, item_end_date,item_mainimage,item_content)
+ 		insert into tbl_sell_item(sId, item_title, item_cost, item_start_date, item_end_date,item_mainimage,
+ 								item_content,item_amount,sell_store_name)
 		values(#{sid},#{item_title},#{item_cost},#{item_start_date, jdbcType=DATE},#{item_end_date, jdbcType=DATE},
-				#{item_mainimage, jdbcType=VARCHAR}, #{item_content})
+				#{item_mainimage, jdbcType=VARCHAR}, #{item_content},#{item_amount},#{sell_store_name})
  	</insert>
  	
  	
@@ -25,7 +26,8 @@
 			item_start_date = #{item_start_date},
 			item_end_date = #{item_end_date},
 			item_mainimage = #{item_mainimage},
-			item_content = #{item_content}
+			item_content = #{item_content},
+			item_amount = #{item_amount}			
 		where ino = #{ino}
 	</update>
 	

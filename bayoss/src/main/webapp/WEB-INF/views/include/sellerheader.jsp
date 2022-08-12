@@ -15,6 +15,26 @@
   <link href="/resources/seller/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="/resources/seller/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="/resources/seller/css/ruang-admin.min.css" rel="stylesheet">
+  <script src="/resources/seller/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/seller/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/resources/seller/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/resources/seller/js/ruang-admin.min.js"></script>
+  <script src="/resources/seller/vendor/chart.js/Chart.min.js"></script>
+  <script src="/resources/seller/js/demo/chart-area-demo.js"></script>
+  <script type="text/javascript">
+  $(function(){
+	 $("#sidebarToggleTop").click(function(){
+		 console.log("클릭");
+		 var status = $("#accordionSidebar").attr("class");
+		 console.log("status: " , status);
+		 if(status == "navbar-nav sidebar sidebar-light accordion toggled" ){
+		 	$("#accordionSidebar").attr("class", "navbar-nav sidebar sidebar-light accordion");
+		 }else if(status == "navbar-nav sidebar sidebar-light accordion"){
+			$("#accordionSidebar").attr("class", "navbar-nav sidebar sidebar-light accordion toggled");
+		 } 
+	 }); 
+  });
+  </script>
 </head>
 
 
@@ -47,7 +67,7 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">목록</h6>
-            <a class="collapse-item" href="alerts.html">리스트</a>
+            <a class="collapse-item" href="/sellerboard/selllist?sid=${sellerVo.sid}">리스트</a>
             <a class="collapse-item" href="/sellerboard/sellerboardform">등록</a>
           </div>
         </div>

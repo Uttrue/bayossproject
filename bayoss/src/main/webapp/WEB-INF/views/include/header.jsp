@@ -24,7 +24,8 @@
 
     <link rel="stylesheet" href="/resources/css/flaticon.css">
     <link rel="stylesheet" href="/resources/css/style.css">
-    
+    <script src="/resources/js/jquery.min.js"></script>
+	  
   </head>
   <body>
 
@@ -76,11 +77,11 @@
 				</li>
 				<li class="nav-item dropdown"><a href="/sub/services" class="nav-link">Services</a>
 					<ul class="dropdown-menu">
+						<li><a href="/sub/servicesInternet">Inernet</a></li>
 						<li><a href="sub/services/pickup.html">Pick-Up</a></li>
 						<li><a href="sub/services/medicalcare.html">Medical Care</a></li>
 						<li><a href="sub/services/tour.html">Tour</a></li>
 						<li><a href="sub/services/event.html">Event</a></li>
-						<li><a href="sub/services/inernet.html">Inernet</a></li>
 					</ul>
 				</li>
 				<li class="nav-item dropdown"><a href="/sub/shopping" class="nav-link">Shopping</a>

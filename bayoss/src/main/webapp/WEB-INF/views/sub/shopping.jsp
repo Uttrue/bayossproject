@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
      pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!-- header  -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
@@ -28,120 +29,25 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md2.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-		  <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-        </div>
-		<div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md2.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-		  <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
+		<c:forEach var="list" items="${itemlist}">
+			<div class="col-md-6 col-lg-3 ftco-animate">
+				<div class="staff" onclick="location.href='/sub/shoppinginfo?ino=${list.ino}'" style="cursor: pointer;">
+					<div class="img-wrap d-flex align-items-stretch">
+						<div class="img align-self-stretch"
+							style="background-image: url('/resources/images/mainimages/${list.item_mainimage}');"></div>
+					</div>
+					<div class="text pt-3 px-3 pb-4 text-center">
+						<h3>${list.item_title}</h3>
+						<span class="position mb-2">${list.sell_store_name}</span>
+						<div class="faded">
+							<p>${list.item_cost}</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+</c:forEach>
+
         </div>
 		<div class="row mt-5">
 			<div class="col text-center">

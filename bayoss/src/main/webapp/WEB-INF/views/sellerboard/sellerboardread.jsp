@@ -8,70 +8,114 @@
 <%@ include file="/WEB-INF/views/include/sellerheader.jsp" %>
 <head>
 
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <!-- 서머노트를 위해 추가해야할 부분 -->
 <script src="/resources/summerNote/summernote-lite.js"></script>
 <script src="/resources/summerNote/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="/resources/summerNote/summernote-lite.css">
+<script type="text/javascript">
+$(function(){
+	//대표이미지 미리보기 버튼
+	$(".btnpreview").click(function(){
+		$("#preview").attr("src","/sellerboard/displayimages?filename=${iteminfo.item_mainimage}");
+		$("#image_delete").show();
+	});
+	//물품 등록 여부
+	var insert_result = "${insert_result}";
+	//물품 업데이트 여부
+	var update_result = "${update_result}";
+	
+	if(insert_result == "true"){
+		alert("물품 정상 등록");
+	} else if(insert_result == "false"){
+		alert("물품 등록 실패");
+	}
+	if(update_result == "true"){
+		alert("물품 정상 업데이트");
+	} else if(update_result == "false"){
+		alert("물품 업데이트 실패");
+	}
+	
+	//스크롤 다운시 컨텐츠 출력
+	$(window).scroll(function(){
+		if($(window).scrollTop() == $(document).height() - $(window).height()){
+			console.log("scrolldown");
+			$("#item_content").html('${iteminfo.item_content}');
+		}
+	});
+	
+});
 
+</script>
 </head>
 
 <body>
 	<div class="container-fluid" id="container-wrapper">
-		
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-8">
-				<h1>물품 등록</h1>
-				<form role="writeForm" action="/sellerboard/sellinsertrun" method="post"
-					id="frmCreate" enctype="multipart/form-data" accept-charset="UTF-8">
-					<input type="hidden" name="sid" value="${sellerVo.sid}">
+				<h1>등록물품보기</h1>
+				<div class="row">
+				<form role="form" action="/sellerboard/sellupdateform" method="get">
+		<div class="form-group">
+		<label for="item_title"> 메인이미지</label>
+			<img src="/sellerboard/displayimages?filename=${iteminfo.item_mainimage}" width="100%;">
+		</div>
+				
+					<input type="hidden" value="${iteminfo.ino}" name="ino">
 					<div class="form-group">
-						<label for="item_title">물품명</label> <input type="text"
-							class="form-control" id="item_title" name="item_title" />
+						<label for="item_title"> 물품명</label> <input
+							type="text" class="form-control" disabled id="item_title" value="${iteminfo.item_title}" 
+							style="border: none;" />
+							
 					</div>
 					<div class="form-group">
-						<label for="item_cost">물품가격</label> <input type="number"
-							class="form-control" id="item_cost" name="item_cost" />
+						<label for="item_cost"> 물품가격</label> <input
+							type="number" class="form-control" disabled id="item_cost" value="${iteminfo.item_cost}" 
+							style="border: none;" />
 					</div>
 					<div class="form-group">
-						<label for="item_amount">물품수량</label> <input type="number"
-							class="form-control" id="item_amount" name="item_amount" />
+						<label for="item_amount"> 수량</label>
+						<input
+							type="number" class="form-control" disabled id="item_amount" value="${iteminfo.item_amount}" 
+							style="border: none;" />
+						
 					</div>
 					<div class="form-group">
 						<span> <label for="item_start_date"> 판매시작일 </label> <label
 							for="item_end_date"> 판매종료일 </label> <br>
 						</span> <span> <input type="date" id="item_start_date"
-							name="item_start_date" min=""> <input type="date"
-							id="item_end_date" name="item_end_date" min="0000-00-00">
+							name="item_start_date" min="" value="${iteminfo.item_start_date}" disabled> <input type="date"
+							id="item_end_date" name="item_end_date" min="0000-00-00" value="${iteminfo.item_end_date}"disabled>
 						</span>
 					</div>
-
 					<div class="form-group">
-						<label for="item_mainimage" id="item_mainimage"> 대표 이미지 업로드 </label> <input
-							type="file" class="form-control-file" id="file" name="file" /> <img
-							id="preview" src="/resources/images/no_image.jpg" width="200px"><br>
-						<a id="image_delete" style="display: none;">사진 삭제 <b
-							style="color: red; font-size: 30px; cursor: pointer;">&times;</b></a>
+						<label for="item_status">물품상태</label>
+						  <select class="form-group" name="item_status" disabled>
+						  	<option disabled>상태</option>
+						  	<option value="T" disabled <c:if test="${iteminfo.item_status eq 'T'}">selected</c:if>
+						  	>서비스중</option>
+						  	<option value="F" disabled<c:if test="${iteminfo.item_status eq 'F'}">selected</c:if>
+						  	>숨김중</option>
+						  </select>
 					</div>
-
 					<div class="form-group">
 						<label for="item_content"> 내용 </label>
-						<textarea class="summernote" id="item_content"
-							name="item_content" ><font color="red">==사진은 한장만 등록 가능합니다. 이미지 배율을 꼭 지정해주세요. 두장이상시 모든 이미지 출력 안됨(이 글은 지우셔도 됩니다)==</font></textarea>
+						<div id="item_content" style="background-color: aliceblue;"></div>
 					</div>
-
-					<button type="submit" class="btn btn-primary">저장</button>
-					<button type="button" onclick="history.back()" class="btn btn-danger">취소</button>
-				</form>
+					<button type="submit" class="btn btn-primary">수정하기</button>
+					<a href="/sellerboard/selllist?sid=${iteminfo.sid}" class="btn btn-warning">목록리스트</a>
+		</form>
+			
+		</div> <!-- row -->
+		<div class="row">
+			<div class="col-md-12">		
+				
+			</div>
+	</div>
 
 			</div>
 			<div class="col-md-3"></div>
 		</div>
-
 <script>
 	// 썸머노트
 	$('.summernote').summernote(
@@ -206,8 +250,8 @@
 		console.log(start_date);
 		$("#item_end_date").attr("min", start_date);
 	});
-</script>		
-
+</script>	
+	
 
 <!-- footer  -->
 <%@ include file="/WEB-INF/views/include/sellerfooter.jsp"%>

@@ -3,6 +3,7 @@ package com.cynetcore.bayoss.util;
 import java.io.File;
 import java.util.UUID;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedInputStream;
@@ -54,7 +55,6 @@ public class SellerFileUploader {
             //sftp 채널 접속
             channel = session.openChannel("sftp");
             channel.connect();
-            System.out.println("접속 됨");
             channelSftp = (ChannelSftp) channel;
             //파일 업로드
           //  upload(dirPath,file,uploadFileName);
@@ -92,6 +92,7 @@ public class SellerFileUploader {
     }
 
     // 단일 파일 다운로드 
+    @Transactional
     public static InputStream download(String dir, String fileName){
         InputStream in = null;
        // String path = "...";

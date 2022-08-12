@@ -12,6 +12,8 @@ public class SellerItemVo {
 	private String item_mainimage;
 	private String item_content;
 	private String item_status;
+	private int item_amount;
+	private String sell_store_name;
 	
 	public SellerItemVo() {
 		super();
@@ -39,6 +41,21 @@ public class SellerItemVo {
 		this.item_mainimage = item_mainimage;
 		this.item_content = item_content;
 	}
+	
+	
+
+	public SellerItemVo(String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
+			String item_mainimage, String item_content, int item_amount) {
+		super();
+		this.sid = sid;
+		this.item_title = item_title;
+		this.item_cost = item_cost;
+		this.item_start_date = item_start_date;
+		this.item_end_date = item_end_date;
+		this.item_mainimage = item_mainimage;
+		this.item_content = item_content;
+		this.item_amount = item_amount;
+	}
 
 	public SellerItemVo(int ino, String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
 			String item_mainimage, String item_content, String item_status) {
@@ -52,6 +69,39 @@ public class SellerItemVo {
 		this.item_mainimage = item_mainimage;
 		this.item_content = item_content;
 		this.item_status = item_status;
+	}
+
+	
+	
+	
+	public SellerItemVo(String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
+			String item_mainimage, String item_content, int item_amount, String sell_store_name) {
+		super();
+		this.sid = sid;
+		this.item_title = item_title;
+		this.item_cost = item_cost;
+		this.item_start_date = item_start_date;
+		this.item_end_date = item_end_date;
+		this.item_mainimage = item_mainimage;
+		this.item_content = item_content;
+		this.item_amount = item_amount;
+		this.sell_store_name = sell_store_name;
+	}
+
+	public SellerItemVo(int ino, String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
+			String item_mainimage, String item_content, String item_status, int item_amount, String sell_store_name) {
+		super();
+		this.ino = ino;
+		this.sid = sid;
+		this.item_title = item_title;
+		this.item_cost = item_cost;
+		this.item_start_date = item_start_date;
+		this.item_end_date = item_end_date;
+		this.item_mainimage = item_mainimage;
+		this.item_content = item_content;
+		this.item_status = item_status;
+		this.item_amount = item_amount;
+		this.sell_store_name = sell_store_name;
 	}
 
 	public int getIno() {
@@ -126,12 +176,32 @@ public class SellerItemVo {
 		this.item_status = item_status;
 	}
 
+	public int getItem_amount() {
+		return item_amount;
+	}
+
+	public void setItem_amount(int item_amount) {
+		this.item_amount = item_amount;
+	}
+
+	public String getSell_store_name() {
+		return sell_store_name;
+	}
+
+	public void setSell_store_name(String sell_store_name) {
+		this.sell_store_name = sell_store_name;
+	}
+
 	@Override
 	public String toString() {
 		return "SellerItemVo [ino=" + ino + ", sid=" + sid + ", item_title=" + item_title + ", item_cost=" + item_cost
 				+ ", item_start_date=" + item_start_date + ", item_end_date=" + item_end_date + ", item_mainimage="
-				+ item_mainimage + ", item_content=" + item_content + ", item_status=" + item_status + "]";
+				+ item_mainimage + ", item_content=" + item_content + ", item_status=" + item_status + ", item_amount="
+				+ item_amount + ", sell_store_name=" + sell_store_name + "]";
 	}
+
+
+	
 
 	
 	

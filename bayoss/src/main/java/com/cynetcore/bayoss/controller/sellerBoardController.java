@@ -1,17 +1,18 @@
 package com.cynetcore.bayoss.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cynetcore.bayoss.service.SellerItemService;
 import com.cynetcore.bayoss.util.SellerFileUploader;
@@ -35,7 +36,7 @@ public class sellerBoardController {
 	
 	//셀러 물품 등록 실행
 	@RequestMapping(value = "/sellinsertrun", method = RequestMethod.POST)
-	public String sellinsertrun(SellerItemVo itemVo, MultipartFile file) throws Exception {
+	public String sellinsertrun(SellerItemVo itemVo, MultipartFile file, RedirectAttributes rttr) throws Exception {
 		System.out.println("sellinsertrun, itemVo" + itemVo);
 		long size = file.getSize();
 		System.out.println("sellinsertrun, file" + file);
@@ -45,16 +46,18 @@ public class sellerBoardController {
 	//		byte[] fileData = file.getBytes();
 			SellerFileUploader.Connect();
 			String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
+			SellerFileUploader.disconnect();
 			itemVo.setItem_mainimage(imagename);
 			System.out.println("sellinsertrun, imagename" + imagename);
 			System.out.println("sellinsertrun, itemVo" + itemVo);
 	//		String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
 			itemVo.setItem_mainimage(imagename);
-			//FTP 서버로 파일 전송하는것 만들기
+			//등록후 글 보기 창으로 이동. 목록 리스트 생성. 페이징
 		}
 		
 		boolean result = itemService.itemInsert(itemVo);
-		return "redirect:/sellerboard/sellList";
+		rttr.addFlashAttribute("insert_result", result);
+		return "redirect:/sellerboard/selllist?sid="+ itemVo.getSid();
 	}
 	
 	//썸머노트 이미지 업로드
@@ -64,6 +67,7 @@ public class sellerBoardController {
 		String originalFilename = file.getOriginalFilename();
 		SellerFileUploader.Connect();
 		String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
+		SellerFileUploader.disconnect();
 		return imagename;
 	}
 	
@@ -72,33 +76,73 @@ public class sellerBoardController {
 	@RequestMapping(value = "/displayimages", method = RequestMethod.GET)
 	public byte[] displayimages(String filename) throws Exception{
 		SellerFileUploader.Connect();
+		System.out.println("접속 됨");
 		InputStream fis = SellerFileUploader.download(URLPATH, filename);
 	//	FileInputStream fis = new FileInputStream("/"+URLPATH + filename);
 		System.out.println("displayimages : " +fis );
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
+		SellerFileUploader.disconnect();
 		return data;
 	}
 	
 	//셀러 물품 리스트
 	@RequestMapping(value = "/selllist", method = RequestMethod.GET)
-	public String selllist(int seller_reg_no) {
-	
-		return "sellerboard/sellList";
+	public String selllist(String sid, Model model) {
+		List<SellerItemVo> itemlist = itemService.itemList(sid);
+		model.addAttribute("itemlist", itemlist);
+		return "sellerboard/sellerboardlist";
 	}
 	
-	//셀러 물품 등록 페이지
-	@RequestMapping(value = "/sellupdate", method = RequestMethod.GET)
-	public String sellupdate() {
-	
-		return "sellerboard/sellupdateForm";
+	//셀러 물품 상세보기
+	@RequestMapping(value = "/iteminfo", method = RequestMethod.GET)
+	public String selliteminfo(int ino, Model model) {
+		SellerItemVo iteminfo = itemService.itemInfo(ino);
+		model.addAttribute("iteminfo", iteminfo);
+		
+		return "sellerboard/sellerboardread";
 	}
+	
+	//셀러 물품 업데이트 페이지
+	@RequestMapping(value = "/sellupdateform", method = RequestMethod.GET)
+	public String sellupdate(int ino, Model model) {
+		SellerItemVo iteminfo = itemService.itemInfo(ino);
+		model.addAttribute("iteminfo", iteminfo);
+		return "sellerboard/sellerboardupdateform";
+	}
+	
 	
 	//셀러 물품 업데이트 실행
 	@RequestMapping(value = "/sellupdaterun", method = RequestMethod.POST)
-	public String sellupdaterun() {
-	
-		return "sellerboard/sellList";
+	public String sellupdaterun(SellerItemVo itemVo, MultipartFile file, RedirectAttributes rttr) throws Exception {
+		System.out.println("sellupdaterun : " + itemVo);
+		long size = file.getSize();
+		if(size == 0) {
+			SellerItemVo iteminfo = itemService.itemInfo(itemVo.getIno());
+			String mainimage = iteminfo.getItem_mainimage();
+			itemVo.setItem_mainimage(mainimage);
+			System.out.println("sellupdaterun : " + itemVo);
+		} else {
+			
+			System.out.println("sellinsertrun, file" + file);
+			if(size != 0) {
+				String originalFilename = file.getOriginalFilename();
+				System.out.println("sellinsertrun, originalFilename" + originalFilename);
+		//		byte[] fileData = file.getBytes();
+				SellerFileUploader.Connect();
+				String fileimagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
+		//		SellerFileUploader.disconnect();
+				itemVo.setItem_mainimage(fileimagename);
+				System.out.println("sellinsertrun, imagename" + fileimagename);
+				System.out.println("sellinsertrun, itemVo" + itemVo);
+		//		String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
+				itemVo.setItem_mainimage(fileimagename);
+			}
+		}
+		
+		boolean result = itemService.itemUpdate(itemVo);
+		rttr.addFlashAttribute("update_result", result);
+		return "redirect:/sellerboard/iteminfo?ino="+ itemVo.getIno();
 	}
 	
 	//셀러 물품 업데이트 실행
@@ -114,5 +158,6 @@ public class sellerBoardController {
 	
 		return "sellerboard/sellList";
 	}
+	
 	
 }
