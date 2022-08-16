@@ -31,9 +31,22 @@ public class SellerFileUploader {
 	final static String sftpUsername = "harbormax";
 	final static String sftpPassword = "harbor777**";
 	
+	//C드라이브 사용시 업로더
+	
+	//파일 업로더
+	public static Boolean deleteFile(String filename) {
+		File f = new File(filename);
+		if(f.exists()) {
+			f.delete();
+			return true;
+		}
+		return false;
+	}
+	
+	//sftp서버 연결
 	public static void Connect() throws Exception {
 		
-		 JSch jsch = new JSch();
+		JSch jsch = new JSch();
 		try {
 			//접속
 			//세션객체 생성 ( user , host, port )     
@@ -67,7 +80,7 @@ public class SellerFileUploader {
 		//return uploadFileName;
 	}
 	
-	 // 단일 파일 업로드 
+	 // sftp서버 단일 파일 업로드 
     public static String upload(String fileName, String dirPath,MultipartFile file) throws IOException{
         InputStream in = null;
         String uuid = UUID.randomUUID().toString();
@@ -91,7 +104,7 @@ public class SellerFileUploader {
         return uploadFileName;
     }
 
-    // 단일 파일 다운로드 
+    //sftp서버 단일 파일 다운로드 
     @Transactional
     public static InputStream download(String dir, String fileName){
         InputStream in = null;
@@ -107,20 +120,12 @@ public class SellerFileUploader {
         return in;
     }
 
-    // 파일서버와 세션 종료
+    //sftp서버, 파일서버와 세션 종료
     public static void disconnect(){
         channelSftp.quit();
         session.disconnect();
     }
 	
     
-	public static Boolean deleteFile(String filename) {
-		File f = new File(filename);
-		if(f.exists()) {
-			f.delete();
-			return true;
-		}
-		return false;
-	}
 
 }
