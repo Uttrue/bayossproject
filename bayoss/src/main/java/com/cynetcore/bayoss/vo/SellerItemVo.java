@@ -14,6 +14,7 @@ public class SellerItemVo {
 	private String item_status;
 	private int item_amount;
 	private String sell_store_name;
+	private String item_delete;
 	
 	public SellerItemVo() {
 		super();
@@ -88,8 +89,11 @@ public class SellerItemVo {
 		this.sell_store_name = sell_store_name;
 	}
 
+	
+
 	public SellerItemVo(int ino, String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
-			String item_mainimage, String item_content, String item_status, int item_amount, String sell_store_name) {
+			String item_mainimage, String item_content, String item_status, int item_amount, String sell_store_name,
+			String item_delete) {
 		super();
 		this.ino = ino;
 		this.sid = sid;
@@ -102,6 +106,7 @@ public class SellerItemVo {
 		this.item_status = item_status;
 		this.item_amount = item_amount;
 		this.sell_store_name = sell_store_name;
+		this.item_delete = item_delete;
 	}
 
 	public int getIno() {
@@ -192,17 +197,23 @@ public class SellerItemVo {
 		this.sell_store_name = sell_store_name;
 	}
 
+	public String getItem_delete() {
+		return item_delete;
+	}
+
+	public void setItem_delete(String item_delete) {
+		this.item_delete = item_delete;
+	}
+
 	@Override
 	public String toString() {
 		return "SellerItemVo [ino=" + ino + ", sid=" + sid + ", item_title=" + item_title + ", item_cost=" + item_cost
 				+ ", item_start_date=" + item_start_date + ", item_end_date=" + item_end_date + ", item_mainimage="
 				+ item_mainimage + ", item_content=" + item_content + ", item_status=" + item_status + ", item_amount="
-				+ item_amount + ", sell_store_name=" + sell_store_name + "]";
+				+ item_amount + ", sell_store_name=" + sell_store_name + ", item_delete=" + item_delete + "]";
 	}
 
-
 	
-
 	
 	
 }

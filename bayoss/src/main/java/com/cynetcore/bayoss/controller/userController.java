@@ -59,4 +59,11 @@ public class userController {
 		return "customer/login";
 	}
 	
+	//리뷰쓰기
+	@RequestMapping(value = "/writeform", method = RequestMethod.GET)
+	public String writeform() {
+	
+		return "customer/writeform";
+	}
+	
 }

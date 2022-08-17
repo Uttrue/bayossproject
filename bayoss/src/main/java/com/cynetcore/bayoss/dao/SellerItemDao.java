@@ -18,7 +18,14 @@ public interface SellerItemDao {
 	public boolean itemDelete(SellerItemVo sellerItemVo);
 	//셀러 아이템 리스트
 	public List<SellerItemVo> itemList(String sid);
+	//셀러 전체 아이템 리스트
+	public List<SellerItemVo> selleritemList(String sid);
+	//셀러 전체 아이템 갯수
+	public int itemListcount(String sid);
+	//셀러 아이템 상태에 따른 갯수
+	public int itemListcountTF(String sid,String item_status);
 	//전체 아이템 리스트
 	public List<SellerItemVo> itemListhole();
+	
 	
 }

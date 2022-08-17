@@ -48,6 +48,27 @@ public class SellerItemServiceImpl implements SellerItemService{
 		List<SellerItemVo> itemlist = itemDao.itemList(sid);
 		return itemlist;
 	}
+	
+	//셀러 전체 삭제포함 아이템 리스트
+	@Override
+	public List<SellerItemVo> selleritemList(String sid) {
+		List<SellerItemVo> itemlist = itemDao.selleritemList(sid);
+		return itemlist;
+	}
+	
+	//셀러 전체 삭제포함 아이템 리스트 갯수
+	@Override
+	public int itemListcount(String sid) {
+		int count = itemDao.itemListcount(sid);
+		return count;
+	}
+	
+	//셀러 전체 아이템 상태에 따른 갯수
+	@Override
+	public int itemListcountTF(String sid, String item_status) {
+		int count = itemDao.itemListcountTF(sid, item_status);
+		return count;
+	}
 
 	//전체 아이템 리스트
 	@Override
@@ -55,5 +76,9 @@ public class SellerItemServiceImpl implements SellerItemService{
 		List<SellerItemVo> itemlist = itemDao.itemListhole();
 		return itemlist;
 	}
+
+	
+
+
 
 }

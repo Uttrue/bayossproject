@@ -29,6 +29,7 @@
 				<form role="writeForm" action="/sellerboard/sellinsertrun" method="post"
 					id="frmCreate" enctype="multipart/form-data" accept-charset="UTF-8">
 					<input type="hidden" name="sid" value="${sellerVo.sid}">
+					<input type="hidden" name="sell_store_name" value="${storeInfo.sell_store_name}">
 					<div class="form-group">
 						<label for="item_title">물품명</label> <input type="text"
 							class="form-control" id="item_title" name="item_title" />
@@ -61,7 +62,9 @@
 					<div class="form-group">
 						<label for="item_content"> 내용 </label>
 						<textarea class="summernote" id="item_content"
-							name="item_content" ><font color="red">==사진은 한장만 등록 가능합니다. 이미지 배율을 꼭 지정해주세요. 두장이상시 모든 이미지 출력 안됨(이 글은 지우셔도 됩니다)==</font></textarea>
+							name="item_content" ><font color="red">==1.사진은 한장만 등록 가능합니다. 
+							2.이미지 배율을 꼭 지정해주세요. 3.두장이상시 모든 이미지 출력 안됨. 
+							4.파일 이름은 영어로 해주세요 (이 글은 지우셔도 됩니다)==</font></textarea>
 					</div>
 
 					<button type="submit" class="btn btn-primary">저장</button>

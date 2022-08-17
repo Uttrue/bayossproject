@@ -15,7 +15,7 @@
  	<!-- 아이템 정보 조회 -->
 	<select id="itemInfo" resultType="SellerItemVo">
 		select * from tbl_sell_item
-		where ino = #{ino}
+		where ino = #{ino} 
 	</select>
 	
 	<!-- 아이템 정보 업데이트 -->
@@ -27,26 +27,49 @@
 			item_end_date = #{item_end_date},
 			item_mainimage = #{item_mainimage},
 			item_content = #{item_content},
-			item_amount = #{item_amount}			
+			item_amount = #{item_amount},			
+			item_status = #{item_status}			
 		where ino = #{ino}
 	</update>
 	
-	<!-- 아이템 삭제 -->
+	<!-- 아이템 삭제 , 복구-->
 	<update id="itemDelete">
 		update tbl_sell_item set
-			item_status = #{item_status}
+			item_delete = #{item_delete}
 		where ino = #{ino}
 	</update>
  	
  	<!-- 셀러 아이템 리스트 조회 -->
  	<select id="itemList" resultType="SellerItemVo">
  		select * from tbl_sell_item
+ 		where sId = #{sid} and item_delete = 'F'
+ 		order by ino desc
+ 	</select>
+ 	
+ 	<!-- 셀러 아이템 리스트 조회 갯수-->
+ 	<select id="itemListcount" resultType="int">
+ 		select count(*) from tbl_sell_item
+ 		where sId = #{sid} and item_delete = 'F'
+ 	</select>
+ 	
+ 	<!-- 셀러 아이템 숨김중/서비스중 조회 갯수-->
+ 	<select id="itemListcountTF" resultType="int">
+ 		select count(*) from tbl_sell_item
+ 		where sId = #{sid} and item_status = #{item_status}
+ 	</select>
+ 	
+ 	<!-- 셀러 전체 삭제포함 아이템 리스트 조회 -->
+ 	<select id="selleritemList" resultType="SellerItemVo">
+ 		select * from tbl_sell_item
  		where sId = #{sid}
+ 		order by ino desc
  	</select>
  	
  	<!-- 아이템 전체 리스트 조회 -->
  	<select id="itemListhole" resultType="SellerItemVo">
  		select * from tbl_sell_item
+ 		where item_status = 'T'
+ 		order by ino desc
  	</select>
  	
  	

@@ -1,5 +1,6 @@
 package com.cynetcore.bayoss.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cynetcore.bayoss.service.SellerItemService;
 import com.cynetcore.bayoss.service.SellerService;
 import com.cynetcore.bayoss.vo.SellStoreVo;
+import com.cynetcore.bayoss.vo.SellerItemVo;
 import com.cynetcore.bayoss.vo.SellerVo;
 
 @Controller
@@ -26,9 +29,12 @@ public class sellerController {
 	private SellerService sellerService;
 	
 	@Autowired
+	private SellerItemService sellerItemService;
+	
+	@Autowired
 	private JavaMailSender mailSender;
 
-	//셀러 기본 홈 - 로그인창
+	//셀러 기본 홈 - 로그인창 - 모든정보 보기가능
 	@RequestMapping(value = "/sellerlogin", method = RequestMethod.GET)
 	public String sellerlogin(HttpSession session) {
 		SellerVo sellerVo = (SellerVo) session.getAttribute("sellerVo");
@@ -59,6 +65,17 @@ public class sellerController {
 			if(storeInfo != null) {
 				//셀러 스토어 있을때 셀러관리홈화면
 				session.setAttribute("storeInfo", storeInfo);
+				//셀러 아이템 리스트
+				List<SellerItemVo> itemlist = sellerItemService.selleritemList(sellerVo.getSid());
+				session.setAttribute("itemlist", itemlist);
+				//셀러 아이템 리스트 갯수
+				int listcount = sellerItemService.itemListcount(sellerVo.getSid());
+				session.setAttribute("itemcount", listcount);
+				//셀러 아이템 상태 갯수
+				int statuscountT = sellerItemService.itemListcountTF(sellerVo.getSid(), "T");
+				int statuscountF = sellerItemService.itemListcountTF(sellerVo.getSid(), "F");
+				session.setAttribute("statuscountT", statuscountT);
+				session.setAttribute("statuscountF", statuscountF);
 				return "seller/sellermain";
 			} else if(storeInfo == null) {
 				//셀러 스토어 없을때 스토어 등록 화면

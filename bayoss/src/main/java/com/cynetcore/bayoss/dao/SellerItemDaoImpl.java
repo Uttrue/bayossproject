@@ -1,6 +1,8 @@
 package com.cynetcore.bayoss.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +63,42 @@ public class SellerItemDaoImpl implements SellerItemDao {
 		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "itemList", sid);
 		return list;
 	}
-
+	//셀러 전체 아이템 리스트
+	@Override
+	public List<SellerItemVo> selleritemList(String sid) {
+		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "selleritemList", sid);
+		return list;
+	}
+	//셀러 전체 아이템 리스트 갯수
+	@Override
+	public int itemListcount(String sid) {
+		int count = sqlSession.selectOne(NAMESPACE+ "itemListcount", sid);
+		return count;
+	}
+	//셀러 전체 아이템 상태에 따른 갯수
+	@Override
+	public int itemListcountTF(String sid, String item_status) {
+		Map<String, String> parameter = new HashMap<String, String>();
+		parameter.put("sid", sid);
+		parameter.put("item_status", item_status);
+		int count = sqlSession.selectOne(NAMESPACE + "itemListcountTF", parameter);
+		return count;
+	}
+	
 	//전체 아이템 리스트 - 관리자용
 	@Override
 	public List<SellerItemVo> itemListhole() {
 		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "itemListhole");
 		return list;
 	}
+
+
+	
+
+
+	
+
+
+
 
 }

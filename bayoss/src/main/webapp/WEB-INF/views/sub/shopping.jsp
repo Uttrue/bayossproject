@@ -34,7 +34,7 @@
 				<div class="staff" onclick="location.href='/sub/shoppinginfo?ino=${list.ino}'" style="cursor: pointer;">
 					<div class="img-wrap d-flex align-items-stretch">
 						<div class="img align-self-stretch"
-							style="background-image: url('/resources/images/mainimages/${list.item_mainimage}');"></div>
+							style="background-image: url('/sellerboard/displayimages?filename=${list.item_mainimage}');"></div>
 					</div>
 					<div class="text pt-3 px-3 pb-4 text-center">
 						<h3>${list.item_title}</h3>

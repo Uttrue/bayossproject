@@ -8,12 +8,12 @@
 <script type="text/javascript">
 $(function(){
 	//스크롤 다운시 컨텐츠 출력
-	$(window).scroll(function(){
+	/* $(window).scroll(function(){
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
 			console.log("scrolldown");
 			$("#item_content").html('${iteminfo.item_content}');
 		}
-	});
+	}); */
 });
 </script>
 
@@ -75,7 +75,7 @@ $(function(){
 			<div class="col-md-12">		
 				<div>
 					<label for="item_content"> 내용 </label>
-					<div id="item_content" style="background-color: aliceblue;"></div>
+					<div id="item_content">${iteminfo.item_content}</div>
 				</div>
 			</div>
 	</div>

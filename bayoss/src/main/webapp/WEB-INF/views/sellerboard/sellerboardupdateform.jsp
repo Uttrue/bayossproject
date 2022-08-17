@@ -20,9 +20,26 @@ function wait(sec) {
     }
 }
 $(function(){
+	//메인이미지 미리보기. 수정예정
 	$(".btnpreview").click(function(){
 		$("#preview").attr("src","/sellerboard/displayimages?filename=${iteminfo.item_mainimage}");
 		$("#image_delete").show();
+	});
+	
+	//아이템 수정 버튼
+	$("#itemupdate").click(function(e){
+		console.log("click");
+		$("form").attr("action","/sellerboard/sellupdaterun");
+		$("form").attr("method", "post");
+		$("form").attr("enctype", "multipart/form-data");
+		$("form").attr("accept-charset", "UTF-8");
+	});
+	
+	//아이템 삭제 버튼
+	$("#itemdelete").click(function(e){
+		console.log("click");
+		$("form").attr("action","/sellerboard/selldelete");
+		$("form").attr("method", "get");
 	});
 	
 });
@@ -37,10 +54,10 @@ $(function(){
 			<div class="col-md-1"></div>
 			<div class="col-md-8">
 				<h1>등록물품수정</h1>
-				<form role="writeForm" action="/sellerboard/sellupdaterun" method="post"
-					id="frmCreate" enctype="multipart/form-data" accept-charset="UTF-8">
+				<form role="writeForm">
 					<input type="hidden" name="sid" value="${sellerVo.sid}">
 					<input type="hidden" name="ino" value="${iteminfo.ino}">
+					<input type="hidden" name="sell_store_name" value="${storeInfo.sell_store_name}">
 					<div class="form-group">
 						<label for="item_title">물품명</label> <input type="text"
 							class="form-control" id="item_title" name="item_title" value="${iteminfo.item_title}" />
@@ -86,8 +103,9 @@ $(function(){
 						  	>숨김중</option>
 						  </select>
 					</div>
-					<button type="submit" class="btn btn-primary">수정</button>
-					<button type="button" onclick="history.back()" class="btn btn-danger">취소</button>
+					<button type="submit" class="btn btn-primary"id="itemupdate">수정</button>
+					<button type="button" onclick="history.back()" class="btn btn-warning">취소</button>
+					<button type="submit" class="btn btn-danger"id="itemdelete">삭제하기</button>
 				</form>
 				
 

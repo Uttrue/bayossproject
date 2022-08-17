@@ -35,13 +35,21 @@ $(function(){
 		alert("물품 업데이트 실패");
 	}
 	
-	//스크롤 다운시 컨텐츠 출력
-	$(window).scroll(function(){
+	//스크롤 다운시 컨텐츠 출력. 대기 삭제 예정
+/* 	$(window).scroll(function(){
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
 			console.log("scrolldown");
 			$("#item_content").html('${iteminfo.item_content}');
 		}
+	}); */
+	//아이템 수정 버튼
+	$("#itemupdate").click(function(e){
+		console.log("click");
+		$("form").attr("action","/sellerboard/sellupdateform");
+		$("form").attr("method", "get");
 	});
+	
+	
 	
 });
 
@@ -55,7 +63,7 @@ $(function(){
 			<div class="col-md-8">
 				<h1>등록물품보기</h1>
 				<div class="row">
-				<form role="form" action="/sellerboard/sellupdateform" method="get">
+				<form role="form">
 		<div class="form-group">
 		<label for="item_title"> 메인이미지</label>
 			<img src="/sellerboard/displayimages?filename=${iteminfo.item_mainimage}" width="100%;">
@@ -100,9 +108,9 @@ $(function(){
 					</div>
 					<div class="form-group">
 						<label for="item_content"> 내용 </label>
-						<div id="item_content" style="background-color: aliceblue;"></div>
+						<div id="item_content">${iteminfo.item_content}</div>
 					</div>
-					<button type="submit" class="btn btn-primary">수정하기</button>
+					<button type="submit" class="btn btn-primary" id="itemupdate">수정하기</button>
 					<a href="/sellerboard/selllist?sid=${iteminfo.sid}" class="btn btn-warning">목록리스트</a>
 		</form>
 			

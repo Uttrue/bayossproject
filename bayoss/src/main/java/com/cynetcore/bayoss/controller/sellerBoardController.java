@@ -1,7 +1,10 @@
 package com.cynetcore.bayoss.controller;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,8 @@ public class sellerBoardController {
 	@Autowired
 	private SellerItemService itemService;
 	
-	final static String URLPATH = "bayoss/seller";
+//	final static String URLPATH = "bayoss/seller";
+	final static String URLPATH = "C://bayossfile";
 
 	//셀러 물품 등록 페이지
 	@RequestMapping(value = "/sellerboardform", method = RequestMethod.GET)
@@ -36,24 +40,29 @@ public class sellerBoardController {
 	
 	//셀러 물품 등록 실행
 	@RequestMapping(value = "/sellinsertrun", method = RequestMethod.POST)
-	public String sellinsertrun(SellerItemVo itemVo, MultipartFile file, RedirectAttributes rttr) throws Exception {
+	public String sellinsertrun(SellerItemVo itemVo, MultipartFile file, RedirectAttributes rttr, 
+										HttpSession session) throws Exception {
 		System.out.println("sellinsertrun, itemVo" + itemVo);
 		long size = file.getSize();
 		System.out.println("sellinsertrun, file" + file);
 		if(size != 0) {
 			String originalFilename = file.getOriginalFilename();
 			System.out.println("sellinsertrun, originalFilename" + originalFilename);
-	//		byte[] fileData = file.getBytes();
-			SellerFileUploader.Connect();
-			String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
-			SellerFileUploader.disconnect();
-			itemVo.setItem_mainimage(imagename);
-			System.out.println("sellinsertrun, imagename" + imagename);
+			byte[] fileData = file.getBytes();
+			String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
+			itemVo.setItem_mainimage(uploadFileName);
+			
+	/*		SellerFileUploader.Connect();*/
+	/*		String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);*/
+	/*		SellerFileUploader.disconnect();*/
+	/*		itemVo.setItem_mainimage(imagename);*/
+	/*		System.out.println("sellinsertrun, imagename" + imagename);*/
 			System.out.println("sellinsertrun, itemVo" + itemVo);
 	//		String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
-			itemVo.setItem_mainimage(imagename);
+	/*		itemVo.setItem_mainimage(imagename);*/
 			//등록후 글 보기 창으로 이동. 목록 리스트 생성. 페이징
 		}
+		//세션에 정보 다시 저장
 		
 		boolean result = itemService.itemInsert(itemVo);
 		rttr.addFlashAttribute("insert_result", result);
@@ -65,9 +74,11 @@ public class sellerBoardController {
 	@RequestMapping(value = "/uploadSummernoteImageFile", method = RequestMethod.POST)
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile file) throws Exception{
 		String originalFilename = file.getOriginalFilename();
-		SellerFileUploader.Connect();
-		String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
-		SellerFileUploader.disconnect();
+		byte[] fileData = file.getBytes();
+		String imagename = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
+	/*	SellerFileUploader.Connect();*/
+	/*	String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
+		SellerFileUploader.disconnect();*/
 		return imagename;
 	}
 	
@@ -75,14 +86,17 @@ public class sellerBoardController {
 	@ResponseBody
 	@RequestMapping(value = "/displayimages", method = RequestMethod.GET)
 	public byte[] displayimages(String filename) throws Exception{
-		SellerFileUploader.Connect();
-		System.out.println("접속 됨");
-		InputStream fis = SellerFileUploader.download(URLPATH, filename);
+		/*SellerFileUploader.Connect();*/
+		/*	System.out.println("접속 됨");
+		InputStream fis = SellerFileUploader.download(URLPATH, filename);*/
 	//	FileInputStream fis = new FileInputStream("/"+URLPATH + filename);
-		System.out.println("displayimages : " +fis );
+	/*	System.out.println("displayimages : " +fis );
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
-		SellerFileUploader.disconnect();
+		SellerFileUploader.disconnect();*/
+		FileInputStream fis = new FileInputStream(URLPATH+ "/" +filename);
+		byte[] data = IOUtils.toByteArray(fis);
+		fis.close();
 		return data;
 	}
 	
@@ -114,7 +128,7 @@ public class sellerBoardController {
 	
 	//셀러 물품 업데이트 실행
 	@RequestMapping(value = "/sellupdaterun", method = RequestMethod.POST)
-	public String sellupdaterun(SellerItemVo itemVo, MultipartFile file, RedirectAttributes rttr) throws Exception {
+	public String sellupdaterun(SellerItemVo itemVo, MultipartFile file, RedirectAttributes rttr,HttpSession session) throws Exception {
 		System.out.println("sellupdaterun : " + itemVo);
 		long size = file.getSize();
 		if(size == 0) {
@@ -129,17 +143,19 @@ public class sellerBoardController {
 				String originalFilename = file.getOriginalFilename();
 				System.out.println("sellinsertrun, originalFilename" + originalFilename);
 		//		byte[] fileData = file.getBytes();
-				SellerFileUploader.Connect();
-				String fileimagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
+		/*		SellerFileUploader.Connect();*/
+		/*		String fileimagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);*/
 		//		SellerFileUploader.disconnect();
-				itemVo.setItem_mainimage(fileimagename);
-				System.out.println("sellinsertrun, imagename" + fileimagename);
+				byte[] fileData = file.getBytes();
+				String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
+				itemVo.setItem_mainimage(uploadFileName);
+				System.out.println("sellinsertrun, imagename" + uploadFileName);
 				System.out.println("sellinsertrun, itemVo" + itemVo);
 		//		String imagename = SellerFileUploader.fileUpload("dev.harbormax.com/bayoss/seller", file.getOriginalFilename(), fileData);
-				itemVo.setItem_mainimage(fileimagename);
+				itemVo.setItem_mainimage(uploadFileName);
 			}
 		}
-		
+		//세션에 정보 다시 저장
 		boolean result = itemService.itemUpdate(itemVo);
 		rttr.addFlashAttribute("update_result", result);
 		return "redirect:/sellerboard/iteminfo?ino="+ itemVo.getIno();
@@ -152,12 +168,18 @@ public class sellerBoardController {
 		return "sellerboard/sellList";
 	}
 	
+	
 	//셀러 물품 삭제
 	@RequestMapping(value = "/selldelete", method = RequestMethod.GET)
-	public String selldelete() {
-	
-		return "sellerboard/sellList";
+	public String selldelete(SellerItemVo sellerItemVo, RedirectAttributes rttr) {
+		System.out.println("sellerItemVo : " + sellerItemVo);
+		sellerItemVo.setItem_delete("T");
+		System.out.println("sellerItemVo : " + sellerItemVo);
+		boolean result = itemService.itemDelete(sellerItemVo);
+		rttr.addFlashAttribute("delete_result", result);
+		return "redirect:/sellerboard/selllist?sid="+ sellerItemVo.getSid();
 	}
 	
+
 	
 }

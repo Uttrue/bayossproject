@@ -17,6 +17,16 @@
 background-color: aliceblue;
 }
 </style>
+<script type="text/javascript">
+//물품 삭제 여부
+var delete_result = "${delete_result}";
+
+if(delete_result == "true"){
+	alert("물품 정상 삭제");
+} else if(delete_result == "false"){
+	alert("물품 삭제 실패");
+}
+</script>
 </head>
 
 <body>
@@ -54,6 +64,7 @@ background-color: aliceblue;
 				</table>
 				<div>
 				<button type="button" onclick="history.back()" class="btn btn-danger">뒤로가기</button>
+				<a type="button" style="float: right;" href="/sellerboard/sellerboardform" class="btn btn-primary">등록하기</a>
 				</div>
 
 				<!-- 페이징  -->
