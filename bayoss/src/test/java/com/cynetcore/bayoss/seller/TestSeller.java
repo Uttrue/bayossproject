@@ -55,9 +55,7 @@ public class TestSeller {
 	//셀러 일반 정보
 	@Test
 	public void testSellerInfo() {
-		SellerVo sellerVo = new SellerVo();
-		sellerVo.setSid("test01");
-		SellerVo sellerInfo = sellerDao.sellerInfo(sellerVo);
+		SellerVo sellerInfo = sellerDao.sellerInfo("test01");
 		System.out.println("testSellerInfo" + sellerInfo);
 	}
 	

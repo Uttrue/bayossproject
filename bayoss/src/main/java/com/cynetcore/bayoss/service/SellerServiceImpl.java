@@ -38,8 +38,8 @@ public class SellerServiceImpl implements SellerService {
 	
 	//셀러 정보 조회
 	@Override
-	public SellerVo sellerInfo(SellerVo sellerVo) {
-		SellerVo sellerinfo = sellerDao.sellerInfo(sellerVo);
+	public SellerVo sellerInfo(String sid) {
+		SellerVo sellerinfo = sellerDao.sellerInfo(sid);
 		return sellerinfo;
 	}
 	//셀러 정보 업데이트

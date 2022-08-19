@@ -13,7 +13,7 @@ public interface SellerService {
 	//셀러 로그인
 	public SellerVo sellerlogin(String sid,String spw);
 	//셀러 정보 조회
-	public SellerVo sellerInfo(SellerVo sellerVo);
+	public SellerVo sellerInfo(String sid);
 	//셀러 정보 업데이트
 	public boolean sellerUpdate(SellerVo sellerVo);
 	//셀러 삭제

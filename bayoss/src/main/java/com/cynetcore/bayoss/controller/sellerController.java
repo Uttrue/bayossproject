@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -121,7 +122,28 @@ public class sellerController {
 		return "redirect:/seller/sellerlogin";
 	}
 	
-	//셀러 회원가입 양식
+	//셀러 업데이트 양식
+	@RequestMapping(value = "/sellerupdateform", method = RequestMethod.GET)
+	public String sellerupdateform(String sid, Model model) {
+		SellerVo sellerVo = sellerService.sellerInfo(sid);
+		model.addAttribute("sellerVo", sellerVo);
+		return "seller/sellerupdateform";
+	}
+	//셀러 업데이트 실행
+	@RequestMapping(value = "/sellerupdaterun", method = RequestMethod.POST)
+	public String sellerupdaterun(SellerVo sellerVo, RedirectAttributes rttr, HttpSession session) {
+		boolean result = sellerService.sellerUpdate(sellerVo);
+		System.out.println("sellerupdaterun sellerVo : " + sellerVo);
+		rttr.addFlashAttribute("update_result", result);
+		if(result == true) {
+			session.setAttribute("sellerVo", sellerVo);
+		}
+		return "redirect:/seller/sellerupdateform";
+	}
+	
+	
+	//스토어 부분
+	//셀러스토어 회원가입 양식
 	@RequestMapping(value = "/sellstoreform", method = RequestMethod.GET)
 	public String sellstoreform() {
 	
@@ -137,42 +159,50 @@ public class sellerController {
 		return "redirect:/seller/sellerhome";
 	}
 	
+	//셀러스토어 업데이트 양식
+	@RequestMapping(value = "/sellstoreupdateform", method = RequestMethod.GET)
+	public String sellstoreupdateform(String sid, Model model) {
+		SellStoreVo sellerStoreInfo = sellerService.sellerStoreInfo(sid);
+		model.addAttribute("sellerStoreInfo", sellerStoreInfo);
+		return "seller/sellstoreupdateform";
+	}
+	//셀러 스토어 업데이트 실행
 	
 	
-	
+	//제일 하단에 두기
 	//셀러 이메일 인증
-		@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
-		@ResponseBody
-		public String mailCheck(String email) {
-			Random random = new Random();
-			int checkNum = random.nextInt(888888) + 111111;
+	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public String mailCheck(String email) {
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
 
-			/* 이메일 보내기 */
-	        String setFrom = "andy1324@naver.com";
-	        String toMail = email;
-	        String title = "회원가입 인증 이메일 입니다.";
-	        String content = 
-	                "베이오스 홈페이지를 방문해주셔서 감사합니다." +
-	                "<br><br>" + 
-	                "인증 번호는 " + checkNum + " 입니다." + 
-	                "<br>" + 
-	                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-	        
-	        try {
-	            
-	            MimeMessage message = mailSender.createMimeMessage();
-	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-	            helper.setFrom(setFrom);
-	            helper.setTo(toMail);
-	            helper.setSubject(title);
-	            helper.setText(content,true);
-	            mailSender.send(message);
-	            
-	        }catch(Exception e) {
-	            e.printStackTrace();
-	        }
-	        
-	        return Integer.toString(checkNum);
-		}
+		/* 이메일 보내기 */
+        String setFrom = "andy1324@naver.com";
+        String toMail = email;
+        String title = "회원가입 인증 이메일 입니다.";
+        String content = 
+                "베이오스 홈페이지를 방문해주셔서 감사합니다." +
+                "<br><br>" + 
+                "인증 번호는 " + checkNum + " 입니다." + 
+                "<br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
+        try {
+            
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        return Integer.toString(checkNum);
+	}
 	
 }

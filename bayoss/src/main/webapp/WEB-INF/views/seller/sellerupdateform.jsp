@@ -3,36 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 
 <!-- header  -->
-<%@ include file="/WEB-INF/views/include/header.jsp" %>
-
+<%@ include file="/WEB-INF/views/include/sellerheader.jsp" %>
 
 <script type="text/javascript">
 $(function(){
-	var sidcheck = "false"; /* 아이디 중복체크 여부 */
 	var emailcheck = "false;" /* 이메일 인증 여부 */
 	var pwcheck = "false"; /* 비밀번호 정규식 통과 */
 	var pwequlcheck = "false"; /* 비밀번호 일치 여부 */
 	var cellphonecheck = "false"; /* 핸드폰 정규식 통과 */
 	var emailnum = "";
-	/* 아이디 중복 체크 */
-	$(".idcheck").click(function(){
-		var sid = $("#sid").val().trim();
-		console.log("sid" , sid);
-		var url = "/seller/issellerexist";
-		var sData = {
-				"sid" : sid
-				};
-		$.get(url,sData, function(rData){
-			/* console.log("rData : " , rData); */
-			if(rData == "true"){
-				$("#textidcheck").text("이미 사용중인 아이디 입니다").css("color","red");
-				sidcheck = "false";
-			}else if (rData == "false"){
-				$("#textidcheck").text("사용가능한 아이디 입니다").css("color","blue");
-				sidcheck = "true";
-			}
-		})
-	});
+	
 	/* 이메일 인증 */
 	$(".btnemailsend").click(function() {
 		var eamil = $("#email").val().trim(); // 이메일 주소값 얻어오기!
@@ -64,10 +44,16 @@ $(function(){
 			emailcheck = "false";
 		}
 	});
-	
+	//수정버튼 클릭시 활성화
+	$("#btnupdate").click(function(){
+		$("#btnupdate").hide();
+		$(".btnupdaterun").show();
+		$(".disabledgroup").removeAttr("disabled");
+		
+	});
 	
 	/* 가입 완료 전송시 */
-	$(".btnjoin").click(function(){
+	$(".btnupdaterun").click(function(){
 		/* 1. 비밀번호 체크 */
 		chkPW();
 		/* 2. 비밀번호 일치 확인 */
@@ -96,7 +82,7 @@ $(function(){
       	}
 	    
 	    /* form 전송전 조건 체크 요건 모두 true 일때 전송 */
-	    if (sidcheck == "true" && emailcheck == "true" &&
+	    if (emailcheck == "true" &&
 	    		pwcheck == "true" &&pwequlcheck == "true" &&
 	    		cellphonecheck == "true"){
 	    	$("#fmtsignup").submit();
@@ -129,28 +115,35 @@ $(function(){
 		    return true;
 		}
 	}
+	//업데이트 후
+	var update_result = "${update_result}";
+	if(update_result == "true"){
+		alert("업데이트 성공");
+	}else if(update_result == "false"){
+		alert("업데이트 실패");
+	}
 });
 </script>
 </head>
 <body>
 	<div class="container-fluid">
 	<div class="row sellerjoindiv" >
-		<div class="col-md-4">
-		</div>
+		<div class="col-md-3"></div>
 		<div class="col-md-4" style="margin-bottom: 5%;">
 				<div><br>
-					<h1>셀러 회원가입</h1>
+					<h1>셀러 정보보기</h1>
 				</div>
-				<form role="form" id="fmtsignup" action="/seller/sellerjoinrun" method="post">
+				<form role="form" id="fmtsignup" action="/seller/sellerupdaterun" method="post">
+				<input type="hidden" name="sid" value="${sellerVo.sid}">
 					<div class="form-row">
 						<label for="sid"> 아이디 </label>
 					</div>
 					<div class="form-row">	
 						<div class="col-sm-9">	
-							<input type="text" class="form-control" id="sid" name="sid" />
+							<input type="text" class="form-control" disabled value="${sellerVo.sid}" />
 						</div>
 						<div class="col-sm-3">	
-							<button type="button" class="btn btn-primary idcheck" style="margin-top: 3%;float: right;">중복확인</button>
+							<button type="button" class="btn btn-primary idcheck disabledgroup" disabled style="margin-top: 3%;float: right;">중복확인</button>
 						</div>
 					</div>
 					<div class="form-group">
@@ -159,12 +152,12 @@ $(function(){
 					<div class="form-row">
 
 						<label for="spw"> 비밀번호 </label> <input
-							type="password" class="form-control" id="spw" name="spw"/>
+							type="password" class="form-control disabledgroup" id="spw" name="spw" disabled/>
 					</div>
 					<div class="form-row">
 
 						<label for="spw2"> 비밀번호확인 </label> <input
-							type="password" class="form-control" id="spw2" />
+							type="password" class="form-control disabledgroup" id="spw2" disabled />
 					</div>
 					<div class="form-row">
 						<div id="pwmatch"></div><br>
@@ -174,10 +167,10 @@ $(function(){
 					</div>
 					<div class="form-row">
 						<div class="col-sm-9">	
-						<input type="email" class="form-control" id="email" name="email" />
+						<input type="email" class="form-control disabledgroup" id="email" name="email" disabled value="${sellerVo.email}"/>
 						</div>
 						<div class="col-sm-3">	
-						<button type="button" class="btn btn-primary btnemailsend" style="margin-top: 3%; float: right;">인증번호전송</button>
+						<button type="button" class="btn btn-primary btnemailsend disabledgroup" disabled style="margin-top: 3%; float: right;">인증번호전송</button>
 						</div>
 					</div>
 					<div class="form-row">
@@ -193,19 +186,18 @@ $(function(){
 					</div>
 					<div class="form-group">
 						<label for="cell"> 핸드폰번호 </label> <input
-							type="number" class="form-control" id="cellphone" name="cellphone"/>
+							type="number" class="form-control disabledgroup" id="cellphone" name="cellphone" disabled value="${sellerVo.cellphone}"/>
 					</div>
-					<button type="button" class="btn btn-primary btnjoin">가입</button>
+					<button type="button" class="btn btn-primary" id="btnupdate">수정</button>
+					<button type="button" class="btn btn-warning btnupdaterun" style="display: none;">수정</button>
 					<button style="float: right;" type="button" class="btn btn-primary"
 					 onclick="history.back()">취소</button>
 					 
 				</form>
 			</div>
-		<div class="col-md-4">
-		</div>
-	</div>
+		<div class="col-md-5"></div>
 </div>
 
 
 <!-- footer  -->
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/sellerfooter.jsp" %>

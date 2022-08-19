@@ -50,8 +50,8 @@ public class SellerDaoImpl implements SellerDao {
 	
 	//셀러 정보 조회
 	@Override
-	public SellerVo sellerInfo(SellerVo sellerVo) {
-		SellerVo sellervo = sqlSession.selectOne(NAMESPACE + "sellerInfo", sellerVo);
+	public SellerVo sellerInfo(String sid) {
+		SellerVo sellervo = sqlSession.selectOne(NAMESPACE + "sellerInfo", sid);
 		return sellervo;
 	}
 	//셀러 정보 업데이트
