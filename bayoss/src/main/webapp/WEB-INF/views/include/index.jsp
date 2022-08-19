@@ -1,5 +1,5 @@
 <!-- 중단 배너 시작-->
-    <div class="hero-wrap" style="background-image: url('/resources/images/cruiseship2.jpg" data-stellar-background-ratio="0.5">
+    <!-- <div class="hero-wrap" style="background-image: url('/resources/images/cruiseship2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
@@ -12,8 +12,36 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 <!-- 중단 배너 끝-->
+<!-- <style>
+.mainfont{
+font-size: 200%;
+}
+</style> -->
+<!-- 중단배너 변경? -->
+<section class="ftco-counter" id="section-counter" style="background-image: url('/resources/images/cruiseship2.jpg');">
+	<div class="container">
+		<div class="row">
+			<div>
+				<div class="col-md-11 ftco-animate text-center">
+					<h1 class="mb-4">BAY OF Smart Service</h1>
+					<h5 class="mainh5">Feel as if you are at home and tell us
+						anything needed for your safe journey at the next sea. Like
+						Service Area on the Highways, BAYOSS is there in every harbor
+						cities.</h5>
+					<p>
+						<a href="/user/aboutus" class="btn btn-primary mr-md-4 py-3 px-4">Learn
+							more </a>
+					</p>
+					<br><br>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- 중단배너 변경? 끝-->
+
 <!-- 중단 배너 아래 4가지 항목 시작-->
     <section class="ftco-section bg-light ftco-no-pt ftco-intro">
     	<div class="container">
@@ -74,6 +102,228 @@
     	</div>
     </section>
 <!-- 중단 배너 아래 4가지 항목 끝-->
+
+<!-- 중단 인기 아이템 시작-->
+    <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2>popular item</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md2.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+		  <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md3.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+		<div class="row d-flex">
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md2.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+		  <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md3.jpg');">
+              </a>
+              <div class="text p-4">
+              	<div class="meta mb-2">
+                  <div><a href="#">April 07, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- 중단 인기 아이템 끝-->
+
+<!-- 중단 클라이언트 피드백 시작-->
+    <section class="ftco-section testimony-section" style="background-image: url('/resources/images/cruiseship2.jpg');">
+    	<div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2>Happy Clients &amp; Feedbacks</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Roger Scott</p>
+		                    <span class="position">Marketing Manager</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- 중단 클라이언트 피드백 끝-->
 
 <!-- 중단 배너 아래 Why Choose Us?시작-->
     <section class="ftco-section ftco-no-pt ftco-no-pb">
@@ -288,99 +538,7 @@
     </section>
 <!-- 중단 배너 제공서비스내용 끝-->
 
-<!-- 중단 클라이언트 피드백 시작-->
-    <section class="ftco-section testimony-section" style="background-image: url('/resources/images/cruiseship2.jpg');">
-    	<div class="overlay"></div>
-      <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h2>Happy Clients &amp; Feedbacks</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                    	<div class="user-img" style="background-image: url(/resources/images/merchantship.jpg)"></div>
-                    	<div class="pl-3">
-		                    <p class="name">Roger Scott</p>
-		                    <span class="position">Marketing Manager</span>
-		                  </div>
-	                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<!-- 중단 클라이언트 피드백 끝-->
+
    <!--  <section class="ftco-section bg-light">
     	<div class="container">
     		<div class="row justify-content-center pb-5 mb-3">
@@ -537,136 +695,9 @@
         </div>
 			</div>
 		</section> -->
-<!-- 중단 인기 아이템 시작-->
-    <section class="ftco-section bg-light">
-      <div class="container">
-        <div class="row justify-content-center pb-5 mb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h2>popular item</h2>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md2.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-		  <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-        </div>
-		<div class="row d-flex">
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md2.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-		  <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="#" class="block-20 rounded" style="background-image: url('/resources/images/md1.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20 rounded" style="background-image: url('/resources/images/md3.jpg');">
-              </a>
-              <div class="text p-4">
-              	<div class="meta mb-2">
-                  <div><a href="#">April 07, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
-                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-                </div>
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<!-- 중단 인기 아이템 끝-->
 
 <!-- 하단 입점문의 시작-->
-    <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img" style="background-image: url(/resources/images/cruiseship2.jpg);">
+    <!-- <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img" style="background-image: url(/resources/images/cruiseship2.jpg);">
 			<div class="overlay"></div>
     	<div class="container">
     		<div class="row d-md-flex justify-content-end">
@@ -730,6 +761,6 @@
 	          </form>
     			</div>
     		</div>
-    	</div>
-    </section>
+    	</div> 
+    </section>-->
 <!-- 하단 입점문의 끝-->
