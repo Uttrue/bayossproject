@@ -50,9 +50,9 @@
  	
  	<!-- 셀러 정식 등록신청 -->
  	<insert id="sellerStoreReg">
- 		insert into tbl_sell_store(sId,sell_store_name, sell_store_regnum,
- 									sell_store_phone, sell_store_fax)
-		values(#{sid},#{sell_store_name},#{sell_store_regnum},#{sell_store_phone},#{sell_store_fax})
+ 		insert into tbl_sell_store(sId,sell_store_name, sell_store_regnum,sell_store_ceo,
+ 									sell_store_phone, sell_store_fax,sell_store_opendate)
+		values(#{sid},#{sell_store_name},#{sell_store_regnum},#{sell_store_ceo},#{sell_store_phone},#{sell_store_fax},#{sell_store_opendate})
  	</insert>
  	
  	<!-- 셀러 상태 변경(정식등록 허용/중단) -->
@@ -66,8 +66,10 @@
  	<update id="sellerStoreUpdate">
  		update tbl_sell_store set
 	 		sell_store_name = #{sell_store_name},
+	 		sell_store_ceo = #{sell_store_ceo},
 	 		sell_store_regnum = #{sell_store_regnum},
 	 		sell_store_phone = #{sell_store_phone},
+	 		sell_store_opendate = #{sell_store_opendate},
 	 		sell_store_fax = #{sell_store_fax}
  		where seller_reg_no = #{seller_reg_no}
  	</update>

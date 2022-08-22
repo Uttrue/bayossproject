@@ -28,6 +28,28 @@
           <div class="col-md-7 heading-section text-center ftco-animate">
           </div>
         </div>
+        <div class="row">
+        	<!-- 검색 -->
+        <div class="col">
+        	<form id="frmSearch" action="/sub/shpping" method="get">
+        	<select id="searchType" style="width: 15%; padding: 1%;" >
+        		<option selected disabled>선택</option>
+        		<option value="p"
+        			<c:if test="${pagingDto.searchType == 'p'}">selected</c:if>
+        		>물품</option>
+        		<option value="s"
+        			<c:if test="${pagingDto.searchType == 's'}">selected</c:if>
+        		>판매자</option>
+        	</select>
+        		<input type="text" id="keyword" class="form-control" style="width: 30%; display: inline-block;">
+        		<input type="hidden" id="searchType" value="${pagingDto.searchType}" class="form-control">
+        		<input type="hidden" id="keyword" value="${pagingDto.keyword}" class="form-control">
+        		<input type="hidden" id="page" value="${pagingDto.page}"  class="form-control">
+        		<button type="button" class="btn btn-primary">검색</button>
+        	</form>
+        </div>
+        <!-- 검색 -->
+        </div><br>
         <div class="row d-flex">
 		<c:forEach var="list" items="${itemlist}">
 			<div class="col-md-6 col-lg-3 ftco-animate">

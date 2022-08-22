@@ -69,7 +69,7 @@ public class TestSeller {
 	//셀러 정식 등록 신청
 	@Test
 	public void testSellerStoreReg() {
-		SellStoreVo storeVo = new SellStoreVo("test02", "사이넷코어", 1234567890, 01011111111 , 07012341234);
+		SellStoreVo storeVo = new SellStoreVo("test01", "하버맥스", "강희욱", "6038184360", 0511111111, "20130619");
 		boolean result = sellerDao.sellerStoreReg(storeVo);
 		System.out.println("testSellerStoreReg: " + result);
 	}
@@ -87,10 +87,10 @@ public class TestSeller {
 	//셀러 정보 업데이트
 	@Test
 	public void testsellerStoreUpdate() {
-		SellStoreVo storeVo = new SellStoreVo("test01", "하버맥스수정", 987654321, 987654321, 987654321);
-		storeVo.setSeller_reg_no(1);
-		boolean result = sellerDao.sellerStoreUpdate(storeVo);
-		System.out.println("testsellerStoreUpdate: " + result);
+	//	SellStoreVo storeVo = new SellStoreVo("test01", "하버맥스수정", 987654321, 987654321, 987654321);
+	//	storeVo.setSeller_reg_no(1);
+	//	boolean result = sellerDao.sellerStoreUpdate(storeVo);
+	//	System.out.println("testsellerStoreUpdate: " + result);
 	}
 	
 	//셀러 스토어 정보 조회

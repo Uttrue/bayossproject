@@ -80,6 +80,7 @@ public class sellerController {
 				return "seller/sellermain";
 			} else if(storeInfo == null) {
 				//셀러 스토어 없을때 스토어 등록 화면
+			
 				return "seller/sellstorejoin";
 			}
 		}	
@@ -140,6 +141,7 @@ public class sellerController {
 		}
 		return "redirect:/seller/sellerupdateform";
 	}
+	//셀러 삭제
 	
 	
 	//스토어 부분
@@ -151,12 +153,16 @@ public class sellerController {
 	}
 	
 	//셀러 스토어 등록  실행
-	@RequestMapping(value = "/sellstorereg", method = RequestMethod.POST)
-	public String sellstorereg(SellerVo sellerVo, RedirectAttributes rttr) {
-		System.out.println("sellerVo : " + sellerVo);
-		boolean result = sellerService.sellerInsert(sellerVo);
-		rttr.addFlashAttribute("join_result", result);
-		return "redirect:/seller/sellerhome";
+	@RequestMapping(value = "/sellstoreregrun", method = RequestMethod.POST)
+	public String sellstoreregrun(SellStoreVo sellStoreVo, RedirectAttributes rttr) {
+		System.out.println("sellStoreVo : " + sellStoreVo);
+		boolean result = sellerService.sellerStoreReg(sellStoreVo);
+		if(result == true) {
+			rttr.addFlashAttribute("join_result", result);
+			return "seller/sellstorejoinresult";
+		}
+		
+		return "seller/sellstorejoin";
 	}
 	
 	//셀러스토어 업데이트 양식
@@ -168,6 +174,7 @@ public class sellerController {
 	}
 	//셀러 스토어 업데이트 실행
 	
+	//셀러 스토어 삭제
 	
 	//제일 하단에 두기
 	//셀러 이메일 인증

@@ -26,9 +26,11 @@ public class TestSellitem {
 	//아이템 등록
 	@Test
 	public void testItemInsert() {
-		SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품2", 10000, null, null ,"2아아아아아", "2아아아아");
-		boolean result = itemDao.itemInsert(sellerItemVo);
-		System.out.println("testItemInsert, result : " + result);
+		for(int i = 1; i < 20; i++ ) {
+			SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품2", 10000, null, null ,"e09691e9-8bee-468a-bb6b-d884bb532162_디지털 트윈.PNG", "<br><p><font color=\"red\"><br></font></p><p><font color=\"red\"><br></font></p><p><img src=\"/sellerboard/displayimages?filename=a7943171-372c-4846-aa5b-cadfceaee9ca_a9dc1013-aca7-4638-bd1c-bf05e793cfa9_KakaoTalk_20220628_152452790_01.jpg\" style=\"width: 100%;\"><font color=\"red\"><br></font></p>");
+			boolean result = itemDao.itemInsert(sellerItemVo);
+		//	System.out.println("testItemInsert, result : " + result);
+		}
 	}
 	
 	//업로드 테스트

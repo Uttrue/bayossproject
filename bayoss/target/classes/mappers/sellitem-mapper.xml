@@ -67,9 +67,18 @@
  	
  	<!-- 아이템 전체 리스트 조회 -->
  	<select id="itemListhole" resultType="SellerItemVo">
+		<!-- SELECT * FROM
+			(SELECT @rownum:=@rownum+1  rnum,  A.* 
+		  FROM tbl_sell_item A, 
+		      (SELECT @ROWNUM := 0) R
+		  WHERE 1=1 ) list
+		WHERE rnum >= #{startRow} AND rnum <= #{endRow} -->
+		
+ 		
  		select * from tbl_sell_item
  		where item_status = 'T'
  		order by ino desc
+ 		
  	</select>
  	
  	

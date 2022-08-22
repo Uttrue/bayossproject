@@ -8,8 +8,12 @@
 ${sellerVo}
 ${storeInfo}
 ${itemlist} --%>
+	 <c:if test="${storeInfo.sell_store_status eq 'F'}">
+	 <h1>관리자 승인후 이용가능합니다</h1>
+	</c:if>
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
+        <c:if test="${storeInfo.sell_store_status eq 'T'}">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">관리자메인</h1>
           </div>
@@ -237,7 +241,7 @@ ${itemlist} --%>
             </div>
           </div>
           <!--Row-->
-
+</c:if>
           
 
         

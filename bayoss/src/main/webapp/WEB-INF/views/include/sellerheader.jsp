@@ -58,6 +58,7 @@
       <div class="sidebar-heading">
         category
       </div>
+       <c:if test="${storeInfo.sell_store_status eq 'T'}">  
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
@@ -72,6 +73,7 @@
           </div>
         </div>
       </li>
+       
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm">
@@ -86,8 +88,9 @@
           </div>
         </div>
       </li>
+      </c:if>
     </ul>
-    
+   
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
@@ -119,3 +122,4 @@
           </ul>
         </nav>
         <!-- Topbar -->
+        
