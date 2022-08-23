@@ -39,17 +39,25 @@
 		where ino = #{ino}
 	</update>
  	
- 	<!-- 셀러 아이템 리스트 조회 -->
+ 	<!-- 셀러 아이템 리스트 조회 (수정중)-->
  	<select id="itemList" resultType="SellerItemVo">
- 		select * from tbl_sell_item
+ 		<!-- select * from tbl_sell_item
  		where sId = #{sid} and item_delete = 'F'
- 		order by ino desc
+ 		order by ino desc -->
+ 		
+ 		select R1.* FROM
+ 			(SELECT * 
+        	FROM tbl_sell_item
+        	where sId = #{sid} and item_delete = 'F' <include refid="search3"></include> 
+        	order by ino asc) R1
+		LIMIT #{pagingDto.perPage, jdbcType=INTEGER} OFFSET #{pagingDto.startRow, jdbcType=INTEGER};
+ 		
  	</select>
  	
  	<!-- 셀러 아이템 리스트 조회 갯수-->
  	<select id="itemListcount" resultType="int">
  		select count(*) from tbl_sell_item
- 		where sId = #{sid} and item_delete = 'F'
+ 		where sId = #{sid} and item_delete = 'F' <include refid="search3"></include>
  	</select>
  	
  	<!-- 셀러 아이템 숨김중/서비스중 조회 갯수-->
@@ -63,6 +71,7 @@
  		select * from tbl_sell_item
  		where sId = #{sid}
  		order by ino desc
+ 		
  	</select>
  	
  	<!-- 전체 아이템 리스트 조회 갯수-->
@@ -90,6 +99,9 @@
  				<when test='searchType == "s"'>
  					where sell_store_name like CONCAT('%',#{keyword},'%')
  				</when>
+ 				<when test='searchType == "c"'>
+ 					where item_cost =  #{keyword}
+ 				</when>
  			</choose>
  		</if>
  	</sql>
@@ -101,6 +113,24 @@
  				</when>
  				<when test='searchType == "s"'>
  					and sell_store_name like CONCAT('%',#{keyword},'%')
+ 				</when>
+ 				<when test='searchType == "c"'>
+ 					and item_cost = #{keyword}
+ 				</when>
+ 			</choose>
+ 		</if>
+ 	</sql>
+ 	<sql id="search3">
+ 		<if test="pagingDto.searchType != null and pagingDto.keyword != null">
+ 			<choose>
+ 				<when test='pagingDto.searchType == "p"'>
+ 					and item_title like CONCAT('%',#{pagingDto.keyword},'%')
+ 				</when>
+ 				<when test='pagingDto.searchType == "s"'>
+ 					and sell_store_name like CONCAT('%',#{pagingDto.keyword},'%')
+ 				</when>
+ 				<when test='pagingDto.searchType == "c"'>
+ 					and item_cost = #{pagingDto.keyword}
  				</when>
  			</choose>
  		</if>

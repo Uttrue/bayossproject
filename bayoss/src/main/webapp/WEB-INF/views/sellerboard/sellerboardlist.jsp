@@ -18,24 +18,81 @@ background-color: aliceblue;
 }
 </style>
 <script type="text/javascript">
-//물품 삭제 여부
-var delete_result = "${delete_result}";
-
-if(delete_result == "true"){
-	alert("물품 정상 삭제");
-} else if(delete_result == "false"){
-	alert("물품 삭제 실패");
-}
+$(function(){
+	//물품 삭제 여부
+	var delete_result = "${delete_result}";
+	
+	if(delete_result == "true"){
+		alert("물품 정상 삭제");
+	} else if(delete_result == "false"){
+		alert("물품 삭제 실패");
+	}
+	
+	var searchType;
+	var keyword;
+	//옵션 체인지
+	$("#searchType").change(function(){
+		searchType = $(this).val();
+		console.log("searchType : " , searchType);
+	});
+	//검색
+	$(".btnsearch").click(function(){
+		keyword = $(this).prev().val();
+		console.log("keyword : " , keyword);
+		if(searchType == null){
+			alert("검색타입을 지정하세요");
+		} else if (keyword == null){
+			alert("검색어를 입력하세요");
+		} else {
+			$("#frmSearch").find("input[name=searchType]").val(searchType);
+			$("#frmSearch").find("input[name=keyword]").val(keyword);
+			$("#frmSearch").attr("method" , "get")
+			$("#frmSearch").attr("action" , "/sellerboard/selllist").submit();
+		}
+	});
+});
 </script>
 </head>
 
 <body>
 	<div class="container-fluid" id="container-wrapper">
 		
+		
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-8">
 				<h1>등록물품리스트</h1><br>
+				<div class="row">
+        	<!-- 검색 -->
+        <div class="col">
+        	
+        	<select id="searchType" style="width: 15%; padding: 1%;" >
+        		<option selected disabled>선택</option>
+        		<option value="p"
+        			<c:if test="${pagingDto.searchType == 'p'}">selected</c:if>
+        		>물품</option>
+        		<option value="c"
+        			<c:if test="${pagingDto.searchType == 'c'}">selected</c:if>
+        		>가격</option>
+        	</select>
+        		<input type="text" id="keyword" class="form-control" style="width: 30%; display: inline-block;">
+        		<button type="button" class="btn btn-primary btnsearch" >검색</button>
+       		<form id="frmSearch">
+        		<input type="hidden" name="searchType" value="${pagingDto.searchType}" class="form-control">
+        		<input type="hidden" name="keyword" value="${pagingDto.keyword}" class="form-control">
+        		<input type="hidden" name="page" value="${pagingDto.page}"  class="form-control">
+        		<input type="hidden" name="sid" value="${sellerVo.sid}"  class="form-control">
+        	</form>
+        </div>
+        <!-- 검색 -->
+        </div><br>
+				
+				
+				
+				
+				
+				
+				
 				<table class="table">
 					<thead>
 						<tr>
@@ -73,7 +130,7 @@ if(delete_result == "true"){
 						<nav>
 							<ul class="pagination justify-content-center">
 								<c:if test="${pagingDto.startPage !=1}">
-									<li><a class="page-link" href="/sellerboard/selllist?page=${pagingDto.startPage-1}">&lt;</a></li>
+									<li><a class="page-link" href="/sellerboard/selllist?sid=${sellerVo.sid}&page=${pagingDto.startPage-1}">&lt;</a></li>
 								</c:if>
 								<c:forEach begin="${pagingDto.startPage}"
 									end="${pagingDto.endPage}" var="i">
@@ -82,10 +139,10 @@ if(delete_result == "true"){
 									<c:when test="${i==pagingDto.page}">class="page-item active"</c:when>
 									<c:otherwise>class="page-item"</c:otherwise>
 								</c:choose>><a
-										 class="page-link" href="/sellerboard/selllist?page=${i}"><span>${i}</span></a></li>
+										 class="page-link" href="/sellerboard/selllist?sid=${sellerVo.sid}&page=${i}"><span>${i}</span></a></li>
 								</c:forEach>
 								<c:if test="${pagingDto.endPage != pagingDto.totalPage}">
-									<li><a class="page-link" href="/sellerboard/selllist?page=${pagingDto.endPage+1}">&gt;</a></li>
+									<li><a class="page-link" href="/sellerboard/selllist?sid=${sellerVo.sid}&page=${pagingDto.endPage+1}">&gt;</a></li>
 								</c:if>
 
 

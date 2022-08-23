@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cynetcore.bayoss.service.SellerItemService;
 import com.cynetcore.bayoss.util.SellerFileUploader;
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @Controller
@@ -102,9 +103,14 @@ public class sellerBoardController {
 	
 	//셀러 물품 리스트
 	@RequestMapping(value = "/selllist", method = RequestMethod.GET)
-	public String selllist(String sid, Model model) {
-		List<SellerItemVo> itemlist = itemService.itemList(sid);
+	public String selllist(String sid, Model model,PagingDto pagingDto) {
+		System.out.println("selllist, pagingDto앞" + pagingDto);
+		List<SellerItemVo> itemlist = itemService.itemList(sid,pagingDto);
+		pagingDto.setCount(itemService.itemListcount(sid,pagingDto));
+		pagingDto.setPage(pagingDto.getPage());
 		model.addAttribute("itemlist", itemlist);
+		model.addAttribute("pagingDto", pagingDto);
+		System.out.println("selllist, pagingDto뒤" + pagingDto);
 		return "sellerboard/sellerboardlist";
 	}
 	

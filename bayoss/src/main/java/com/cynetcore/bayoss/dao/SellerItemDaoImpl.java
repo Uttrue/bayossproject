@@ -60,8 +60,12 @@ public class SellerItemDaoImpl implements SellerItemDao {
 
 	//셀러 아이템 리스트
 	@Override
-	public List<SellerItemVo> itemList(String sid) {
-		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "itemList", sid);
+	public List<SellerItemVo> itemList(String sid,PagingDto pagingDto) {
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		parameter.put("sid", sid);
+		parameter.put("pagingDto", pagingDto);
+		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "itemList", parameter);
+		System.out.println("itemList, dao,parameter" + parameter);
 		return list;
 	}
 	//셀러 전체 아이템 리스트
@@ -72,8 +76,13 @@ public class SellerItemDaoImpl implements SellerItemDao {
 	}
 	//셀러 전체 아이템 리스트 갯수
 	@Override
-	public int itemListcount(String sid) {
-		int count = sqlSession.selectOne(NAMESPACE+ "itemListcount", sid);
+	public int itemListcount(String sid,PagingDto pagingDto) {
+		Map<String, Object> parameter = new HashMap<String, Object>();
+		parameter.put("sid", sid);
+		parameter.put("pagingDto", pagingDto);
+		int count = sqlSession.selectOne(NAMESPACE+ "itemListcount", parameter);
+		System.out.println("itemListcount, dao,parameter" + parameter);
+		System.out.println("itemListcount, dao,count" + count);
 		return count;
 	}
 	//셀러 전체 아이템 상태에 따른 갯수

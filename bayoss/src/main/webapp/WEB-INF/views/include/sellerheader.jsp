@@ -68,7 +68,7 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">목록</h6>
-            <a class="collapse-item" href="/sellerboard/selllist?sid=${sellerVo.sid}">리스트</a>
+            <a class="collapse-item" href="/sellerboard/selllist?sid=${sellerVo.sid}&page=1">리스트</a>
             <a class="collapse-item" href="/sellerboard/sellerboardform">등록</a>
           </div>
         </div>

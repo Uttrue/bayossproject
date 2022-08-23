@@ -45,8 +45,10 @@ public class SellerItemServiceImpl implements SellerItemService{
 
 	//셀러 아이템 리스트
 	@Override
-	public List<SellerItemVo> itemList(String sid) {
-		List<SellerItemVo> itemlist = itemDao.itemList(sid);
+	public List<SellerItemVo> itemList(String sid,PagingDto pagingDto) {
+		List<SellerItemVo> itemlist = itemDao.itemList(sid,pagingDto);
+		System.out.println("itemList, service,sid" + sid);
+		System.out.println("itemList, service,pagingDto" + pagingDto);
 		return itemlist;
 	}
 	
@@ -59,8 +61,11 @@ public class SellerItemServiceImpl implements SellerItemService{
 	
 	//셀러 전체 삭제포함 아이템 리스트 갯수
 	@Override
-	public int itemListcount(String sid) {
-		int count = itemDao.itemListcount(sid);
+	public int itemListcount(String sid,PagingDto pagingDto) {
+		int count = itemDao.itemListcount(sid,pagingDto);
+		System.out.println("itemListcount, service,sid" + sid);
+		System.out.println("itemListcount, service,pagingDto" + pagingDto);
+		System.out.println("itemListcount, service,count" + count);
 		return count;
 	}
 	

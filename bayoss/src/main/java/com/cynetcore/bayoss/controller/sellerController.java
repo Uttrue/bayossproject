@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cynetcore.bayoss.service.SellerItemService;
 import com.cynetcore.bayoss.service.SellerService;
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellStoreVo;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 import com.cynetcore.bayoss.vo.SellerVo;
@@ -55,7 +56,7 @@ public class sellerController {
 	
 	//셀러 기본 홈 - 로그인실행 메인화면이동
 	@RequestMapping(value = "/sellerloginrun", method = RequestMethod.POST)
-	public String sellerloginrun(String sid,String spw, HttpSession session) {
+	public String sellerloginrun(String sid,String spw, HttpSession session,PagingDto pagingDto) {
 //		System.out.println("sellerloginrun, sid : " + sid);
 //		System.out.println("sellerloginrun, spw : " + spw);
 		SellerVo sellerVo = sellerService.sellerlogin(sid, spw);
@@ -70,7 +71,7 @@ public class sellerController {
 				List<SellerItemVo> itemlist = sellerItemService.selleritemList(sellerVo.getSid());
 				session.setAttribute("itemlist", itemlist);
 				//셀러 아이템 리스트 갯수
-				int listcount = sellerItemService.itemListcount(sellerVo.getSid());
+				int listcount = sellerItemService.itemListcount(sellerVo.getSid(),pagingDto);
 				session.setAttribute("itemcount", listcount);
 				//셀러 아이템 상태 갯수
 				int statuscountT = sellerItemService.itemListcountTF(sellerVo.getSid(), "T");
