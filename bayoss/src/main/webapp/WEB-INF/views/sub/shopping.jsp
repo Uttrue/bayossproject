@@ -5,7 +5,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!-- header  -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-
+<script>
+$(function(){
+	var searchType;
+	var keyword;
+	//옵션 체인지
+	$("#searchType").change(function(){
+		searchType = $(this).val();
+		console.log("searchType : " , searchType);
+	});
+	//검색
+	$(".btnsearch").click(function(){
+		keyword = $(this).prev().val();
+		console.log("keyword : " , keyword);
+		if(searchType == null){
+			alert("검색타입을 지정하세요");
+		} else if (keyword == null){
+			alert("검색어를 입력하세요");
+		} else {
+			$("#frmSearch").find("input[name=searchType]").val(searchType);
+			$("#frmSearch").find("input[name=keyword]").val(keyword);
+			$("#frmSearch").attr("method" , "get")
+			$("#frmSearch").attr("action" , "/sub/shopping").submit();
+		}
+	});
+});
+</script>
 
 <section class="ftco-counter" id="section-counter">
 	<div class="container">
@@ -31,7 +56,7 @@
         <div class="row">
         	<!-- 검색 -->
         <div class="col">
-        	<form id="frmSearch" action="/sub/shpping" method="get">
+        	
         	<select id="searchType" style="width: 15%; padding: 1%;" >
         		<option selected disabled>선택</option>
         		<option value="p"
@@ -42,10 +67,11 @@
         		>판매자</option>
         	</select>
         		<input type="text" id="keyword" class="form-control" style="width: 30%; display: inline-block;">
-        		<input type="hidden" id="searchType" value="${pagingDto.searchType}" class="form-control">
-        		<input type="hidden" id="keyword" value="${pagingDto.keyword}" class="form-control">
-        		<input type="hidden" id="page" value="${pagingDto.page}"  class="form-control">
-        		<button type="button" class="btn btn-primary">검색</button>
+        		<button type="button" class="btn btn-primary btnsearch" >검색</button>
+       		<form id="frmSearch">
+        		<input type="hidden" name="searchType" value="${pagingDto.searchType}" class="form-control">
+        		<input type="hidden" name="keyword" value="${pagingDto.keyword}" class="form-control">
+        		<input type="hidden" name="page" value="${pagingDto.page}"  class="form-control">
         	</form>
         </div>
         <!-- 검색 -->
@@ -75,13 +101,20 @@
 			<div class="col text-center">
 				<div class="block-27">
 					<ul>
-						<li><a href="#">&lt;</a></li>
-						<li class="active"><span>1</span></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">&gt;</a></li>
+						<c:if test="${pagingDto.startPage !=1}">
+							<li><a href="/sub/shopping?page=${pagingDto.startPage-1}">&lt;</a></li>
+						</c:if>
+						<c:forEach begin="${pagingDto.startPage}" end="${pagingDto.endPage}" var="i">
+							<li
+								<c:choose>
+									<c:when test="${i==pagingDto.page}">class="active"</c:when>
+									<c:otherwise>class=""</c:otherwise>
+								</c:choose>
+							><a href="/sub/shopping?page=${i}"><span>${i}</span></a></li>
+						</c:forEach>
+						<c:if test="${pagingDto.endPage != pagingDto.totalPage}">
+							<li><a href="/sub/shopping?page=${pagingDto.endPage+1}">&gt;</a></li>
+						</c:if>	
 					</ul>
 				</div>
 			</div>

@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cynetcore.bayoss.dao.SellerItemDao;
 import com.cynetcore.bayoss.util.SellerFileUploader;
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,8 +27,8 @@ public class TestSellitem {
 	//아이템 등록
 	@Test
 	public void testItemInsert() {
-		for(int i = 1; i < 20; i++ ) {
-			SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품2", 10000, null, null ,"e09691e9-8bee-468a-bb6b-d884bb532162_디지털 트윈.PNG", "<br><p><font color=\"red\"><br></font></p><p><font color=\"red\"><br></font></p><p><img src=\"/sellerboard/displayimages?filename=a7943171-372c-4846-aa5b-cadfceaee9ca_a9dc1013-aca7-4638-bd1c-bf05e793cfa9_KakaoTalk_20220628_152452790_01.jpg\" style=\"width: 100%;\"><font color=\"red\"><br></font></p>");
+		for(int i = 1; i < 100; i++ ) {
+			SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품2"+i, 10000, null, null ,"e09691e9-8bee-468a-bb6b-d884bb532162_디지털 트윈.PNG", "<br><p><font color=\"red\"><br></font></p><p><font color=\"red\"><br></font></p><p><img src=\"/sellerboard/displayimages?filename=a7943171-372c-4846-aa5b-cadfceaee9ca_a9dc1013-aca7-4638-bd1c-bf05e793cfa9_KakaoTalk_20220628_152452790_01.jpg\" style=\"width: 100%;\"><font color=\"red\"><br></font></p>");
 			boolean result = itemDao.itemInsert(sellerItemVo);
 		//	System.out.println("testItemInsert, result : " + result);
 		}
@@ -80,8 +81,9 @@ public class TestSellitem {
 	//셀러 리스트
 		@Test
 		public void testSellItemListHole() {
+			/*PagingDto pagingDto = new 
 			List<SellerItemVo> itemlist = itemDao.itemListhole();
-			System.out.println("testSellItemListHole" + itemlist);
+			System.out.println("testSellItemListHole" + itemlist);*/
 		}
 	
 }

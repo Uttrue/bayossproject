@@ -65,12 +65,44 @@ if(delete_result == "true"){
 				<div>
 				<button type="button" onclick="history.back()" class="btn btn-danger">뒤로가기</button>
 				<a type="button" style="float: right;" href="/sellerboard/sellerboardform" class="btn btn-primary">등록하기</a>
+				</div><br>
+
+				<!-- 페이징  -->
+				<div class="row">
+					<div class="col-md-12">
+						<nav>
+							<ul class="pagination justify-content-center">
+								<c:if test="${pagingDto.startPage !=1}">
+									<li><a class="page-link" href="/sellerboard/selllist?page=${pagingDto.startPage-1}">&lt;</a></li>
+								</c:if>
+								<c:forEach begin="${pagingDto.startPage}"
+									end="${pagingDto.endPage}" var="i">
+									<li
+										<c:choose>
+									<c:when test="${i==pagingDto.page}">class="page-item active"</c:when>
+									<c:otherwise>class="page-item"</c:otherwise>
+								</c:choose>><a
+										 class="page-link" href="/sellerboard/selllist?page=${i}"><span>${i}</span></a></li>
+								</c:forEach>
+								<c:if test="${pagingDto.endPage != pagingDto.totalPage}">
+									<li><a class="page-link" href="/sellerboard/selllist?page=${pagingDto.endPage+1}">&gt;</a></li>
+								</c:if>
+
+
+							<!-- 	<li class="page-item"><a class="page-link" href="#">이전</a></li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">4</a></li>
+								<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<li class="page-item"><a class="page-link" href="#">다음</a>
+								</li> -->
+							</ul>
+						</nav>
+					</div>
 				</div>
 
 				<!-- 페이징  -->
-			
-			
-			<!-- 페이징  -->
 			</div>
 			<div class="col-md-3"></div>
 		</div>

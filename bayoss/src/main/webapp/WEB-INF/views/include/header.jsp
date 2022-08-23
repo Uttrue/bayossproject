@@ -84,7 +84,7 @@
 						<li><a href="sub/services/event.html">Event</a></li>
 					</ul>
 				</li>
-				<li class="nav-item dropdown"><a href="/sub/shopping" class="nav-link">Shopping</a>
+				<li class="nav-item dropdown"><a href="/sub/shopping?page=1" class="nav-link">Shopping</a>
 					<ul class="dropdown-menu">
 						<li><a href="sub/shopping/cosmetics.html">Cosmetics</a></li>
 						<li><a href="sub/shopping/accessories.html">Accessories</a></li>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cynetcore.bayoss.dao.SellerItemDao;
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @Service
@@ -69,13 +70,22 @@ public class SellerItemServiceImpl implements SellerItemService{
 		int count = itemDao.itemListcountTF(sid, item_status);
 		return count;
 	}
+	
+	//전체 아이템 갯수
+	@Override
+	public int itemListholecount(PagingDto pagingDto) {
+		int count = itemDao.itemListholecount(pagingDto);
+		return count;
+	}
 
 	//전체 아이템 리스트
 	@Override
-	public List<SellerItemVo> itemListhole() {
-		List<SellerItemVo> itemlist = itemDao.itemListhole();
+	public List<SellerItemVo> itemListhole(PagingDto pagingDto) {
+		List<SellerItemVo> itemlist = itemDao.itemListhole(pagingDto);
 		return itemlist;
 	}
+
+	
 
 	
 

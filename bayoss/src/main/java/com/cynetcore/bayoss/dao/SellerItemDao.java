@@ -2,7 +2,7 @@ package com.cynetcore.bayoss.dao;
 
 import java.util.List;
 
-
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellStoreVo;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 import com.cynetcore.bayoss.vo.SellerVo;
@@ -24,8 +24,10 @@ public interface SellerItemDao {
 	public int itemListcount(String sid);
 	//셀러 아이템 상태에 따른 갯수
 	public int itemListcountTF(String sid,String item_status);
+	//전체 아이템 갯수
+	public int itemListholecount(PagingDto pagingDto);
 	//전체 아이템 리스트
-	public List<SellerItemVo> itemListhole();
+	public List<SellerItemVo> itemListhole(PagingDto pagingDto);
 	
 	
 }

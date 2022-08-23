@@ -65,21 +65,44 @@
  		order by ino desc
  	</select>
  	
- 	<!-- 아이템 전체 리스트 조회 -->
- 	<select id="itemListhole" resultType="SellerItemVo">
-		<!-- SELECT * FROM
-			(SELECT @rownum:=@rownum+1  rnum,  A.* 
-		  FROM tbl_sell_item A, 
-		      (SELECT @ROWNUM := 0) R
-		  WHERE 1=1 ) list
-		WHERE rnum >= #{startRow} AND rnum <= #{endRow} -->
-		
- 		
- 		select * from tbl_sell_item
- 		where item_status = 'T'
- 		order by ino desc
- 		
+ 	<!-- 전체 아이템 리스트 조회 갯수-->
+ 	<select id="itemListholecount" resultType="int">
+ 		select count(*) from tbl_sell_item
+ 		where item_delete = 'F'<include refid="search2"></include>
  	</select>
  	
- 	
+ 	<!-- 아이템 전체 리스트 조회 -->
+ 	<select id="itemListhole" resultType="SellerItemVo">
+ 		select R1.* FROM
+ 			(SELECT * 
+        	FROM tbl_sell_item
+        	<include refid="search"></include> 
+        	order by ino asc) R1
+		LIMIT #{perPage, jdbcType=INTEGER} OFFSET #{startRow, jdbcType=INTEGER};
+ 		
+ 	</select>
+ 	<sql id="search">
+ 		<if test="searchType != null and keyword != null">
+ 			<choose>
+ 				<when test='searchType == "p"'>
+ 					where item_title like CONCAT('%',#{keyword},'%')
+ 				</when>
+ 				<when test='searchType == "s"'>
+ 					where sell_store_name like CONCAT('%',#{keyword},'%')
+ 				</when>
+ 			</choose>
+ 		</if>
+ 	</sql>
+ 	<sql id="search2">
+ 		<if test="searchType != null and keyword != null">
+ 			<choose>
+ 				<when test='searchType == "p"'>
+ 					and item_title like CONCAT('%',#{keyword},'%')
+ 				</when>
+ 				<when test='searchType == "s"'>
+ 					and sell_store_name like CONCAT('%',#{keyword},'%')
+ 				</when>
+ 			</choose>
+ 		</if>
+ 	</sql>
  </mapper>

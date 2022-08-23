@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @Repository
@@ -85,12 +86,22 @@ public class SellerItemDaoImpl implements SellerItemDao {
 		return count;
 	}
 	
+	//전체 아이템 갯수
+	@Override
+	public int itemListholecount(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE+"itemListholecount" , pagingDto);
+		return count;
+	}
+	
 	//전체 아이템 리스트 - 관리자용
 	@Override
-	public List<SellerItemVo> itemListhole() {
-		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "itemListhole");
+	public List<SellerItemVo> itemListhole(PagingDto pagingDto) {
+		List<SellerItemVo> list = sqlSession.selectList(NAMESPACE + "itemListhole",pagingDto);
 		return list;
 	}
+
+
+
 
 
 	

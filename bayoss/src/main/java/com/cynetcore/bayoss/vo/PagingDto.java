@@ -6,7 +6,7 @@ public class PagingDto {
 	private int endRow; // 종료 행
 	private String searchType; // 찾으려는 방식
 	private String keyword; // 키워드
-	private int perPage = 10; // 각 페이지당 글 수
+	private int perPage = 20; // 각 페이지당 글 수
 	private int totalPage; // 전체 페이지
 	private int count; // 전체 글 수
 	private int startPage = 1; // 시작 페이지

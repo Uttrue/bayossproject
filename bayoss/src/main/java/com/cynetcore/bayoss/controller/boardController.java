@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cynetcore.bayoss.service.SellerItemService;
+import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @Controller
@@ -52,9 +53,14 @@ public class boardController {
 	
 	//쇼핑 전체 물품 리스트
 	@RequestMapping(value = "/shopping", method = RequestMethod.GET)
-	public String selllisthole(Model model) {
-		List<SellerItemVo> itemlist = itemService.itemListhole();
+	public String selllisthole(Model model, PagingDto pagingDto) {
+		System.out.println("shoppinginfo, pagingDto" + pagingDto);
+		List<SellerItemVo> itemlist = itemService.itemListhole(pagingDto);
+		pagingDto.setCount(itemService.itemListholecount(pagingDto));
+		pagingDto.setPage(pagingDto.getPage());
 		model.addAttribute("itemlist", itemlist);
+		model.addAttribute("pagingDto", pagingDto);
+		System.out.println("shoppinginfo, pagingDto" + pagingDto);
 		return "sub/shopping";
 	}
 	
