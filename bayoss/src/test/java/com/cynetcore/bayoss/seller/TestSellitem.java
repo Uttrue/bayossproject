@@ -74,8 +74,8 @@ public class TestSellitem {
 	//셀러 리스트
 	@Test
 	public void testSellItemList() {
-		List<SellerItemVo> itemlist = itemDao.itemList("test01");
-		System.out.println("testSellItemList" + itemlist);
+		/*List<SellerItemVo> itemlist = itemDao.itemList("test01");
+		System.out.println("testSellItemList" + itemlist);*/
 	}
 	
 	//셀러 리스트

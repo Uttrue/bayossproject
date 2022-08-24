@@ -31,6 +31,7 @@ public class sellerBoardController {
 	
 //	final static String URLPATH = "bayoss/seller";
 	final static String URLPATH = "C://bayossfile";
+	final static String URLPATH2 = "/var/lib/tomcat9/webapps/ROOT/resources/images";
 
 	//셀러 물품 등록 페이지
 	@RequestMapping(value = "/sellerboardform", method = RequestMethod.GET)
@@ -95,7 +96,7 @@ public class sellerBoardController {
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
 		SellerFileUploader.disconnect();*/
-		FileInputStream fis = new FileInputStream(URLPATH+ "/" +filename);
+		FileInputStream fis = new FileInputStream(URLPATH2+ "/" +filename);
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
 		return data;

@@ -111,6 +111,7 @@ $(function(){
 						<div id="item_content">${iteminfo.item_content}</div>
 					</div>
 					<button type="submit" class="btn btn-primary" id="itemupdate">수정하기</button>
+					<button type="button" onclick="history.back()" class="btn btn-danger">뒤로가기</button>
 					<a href="/sellerboard/selllist?sid=${iteminfo.sid}" class="btn btn-warning">목록리스트</a>
 		</form>
 			

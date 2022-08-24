@@ -19,13 +19,15 @@
 font-size: 200%;
 }
 </style> -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- 중단배너 변경? -->
 <section class="ftco-counter" id="section-counter" style="background-image: url('/resources/images/cruiseship2.jpg');">
 	<div class="container">
 		<div class="row">
 			<div>
 				<div class="col-md-11 ftco-animate text-center">
-					<h1 class="mb-4">BAY OF Smart Service</h1>
+					<h1 class="mb-4">
+					BAY OF Smart Service </h1>
 					<h5 class="mainh5">Feel as if you are at home and tell us
 						anything needed for your safe journey at the next sea. Like
 						Service Area on the Highways, BAYOSS is there in every harbor
@@ -52,7 +54,7 @@ font-size: 200%;
 							<span>1</span>
 					  </div>
 					  <div class="media-body">
-						<h3 class="heading">Maintenence</h3>
+						<h3 class="heading">Maintenence<spring:message code="message.index.maintenence"/></h3>
 						<p>Ship Maintenance service
 							Next-generation data provides exceptional flexibility and scalability.</p>
 						<a href="maintenence.html" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>

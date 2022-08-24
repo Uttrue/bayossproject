@@ -78,7 +78,8 @@ $(function(){
 					<div id="item_content">${iteminfo.item_content}</div>
 				</div>
 			</div>
-	</div>
+	</div><br><br>
+	<button type="button" onclick="history.back()" class="btn btn-danger">뒤로가기</button>
 	</div>
 </section>
 
