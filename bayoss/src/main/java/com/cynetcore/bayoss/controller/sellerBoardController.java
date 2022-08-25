@@ -30,8 +30,8 @@ public class sellerBoardController {
 	private SellerItemService itemService;
 	
 //	final static String URLPATH = "bayoss/seller";
-	final static String URLPATH = "C://bayossfile";
-	final static String URLPATH2 = "/var/lib/tomcat9/webapps/ROOT/resources/images/mainimages";
+	final static String URLPATH = "C://bayossfile"; //로컬개발
+	final static String URLPATH2 = "/var/lib/tomcat9/webapps/ROOT/images"; //서버 업로드용
 
 	//셀러 물품 등록 페이지
 	@RequestMapping(value = "/sellerboardform", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class sellerBoardController {
 			String originalFilename = file.getOriginalFilename();
 			System.out.println("sellinsertrun, originalFilename" + originalFilename);
 			byte[] fileData = file.getBytes();
-			String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
+			String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH2, fileData);
 			itemVo.setItem_mainimage(uploadFileName);
 			
 	/*		SellerFileUploader.Connect();*/
@@ -77,7 +77,7 @@ public class sellerBoardController {
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile file) throws Exception{
 		String originalFilename = file.getOriginalFilename();
 		byte[] fileData = file.getBytes();
-		String imagename = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
+		String imagename = SellerFileUploader.fileUpload(originalFilename, URLPATH2, fileData);
 	/*	SellerFileUploader.Connect();*/
 	/*	String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
 		SellerFileUploader.disconnect();*/
@@ -96,7 +96,7 @@ public class sellerBoardController {
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
 		SellerFileUploader.disconnect();*/
-		FileInputStream fis = new FileInputStream(URLPATH+ "/" +filename);
+		FileInputStream fis = new FileInputStream(URLPATH2+ "/" +filename);
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
 		return data;
