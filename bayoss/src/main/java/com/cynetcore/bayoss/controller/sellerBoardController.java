@@ -154,7 +154,7 @@ public class sellerBoardController {
 		/*		String fileimagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);*/
 		//		SellerFileUploader.disconnect();
 				byte[] fileData = file.getBytes();
-				String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
+				String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH2, fileData);
 				itemVo.setItem_mainimage(uploadFileName);
 				System.out.println("sellinsertrun, imagename" + uploadFileName);
 				System.out.println("sellinsertrun, itemVo" + itemVo);

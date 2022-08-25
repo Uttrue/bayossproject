@@ -39,17 +39,13 @@
 		where ino = #{ino}
 	</update>
  	
- 	<!-- 셀러 아이템 리스트 조회 (수정중)-->
+ 	<!-- 셀러 아이템 리스트 조회 -->
  	<select id="itemList" resultType="SellerItemVo">
- 		<!-- select * from tbl_sell_item
- 		where sId = #{sid} and item_delete = 'F'
- 		order by ino desc -->
- 		
  		select R1.* FROM
  			(SELECT * 
         	FROM tbl_sell_item
         	where sId = #{sid} and item_delete = 'F' <include refid="search3"></include> 
-        	order by ino asc) R1
+        	order by ino desc) R1
 		LIMIT #{pagingDto.perPage, jdbcType=INTEGER} OFFSET #{pagingDto.startRow, jdbcType=INTEGER};
  		
  	</select>
@@ -86,7 +82,7 @@
  			(SELECT * 
         	FROM tbl_sell_item
         	<include refid="search"></include> 
-        	order by ino asc) R1
+        	order by ino desc) R1
 		LIMIT #{perPage, jdbcType=INTEGER} OFFSET #{startRow, jdbcType=INTEGER};
  		
  	</select>
