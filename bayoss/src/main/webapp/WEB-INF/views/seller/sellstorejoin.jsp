@@ -63,11 +63,23 @@ $(function(){
 	});/* 사업자 등록번호 체크끝 */
 	//등록 버튼 클릭시
 	$(".btnregstore").click(function(){
-		if(regcheck == "true"){
-			$("#fmtreg").attr("action" , "/seller/sellstoreregrun");
-			$("#fmtreg").attr("method" , "post");
-			$("#fmtreg").submit();
+		var regcheckstore;
+		var sell_store_regnum = $("#sell_store_regnum").val().trim();
+		var url = "/seller/sellstoreRegChk";
+		var sData = {
+				"sell_store_regnum" : sell_store_regnum
 		}
+		//비동기 사업자 확인
+		$.get(url, sData, function(rData){
+			if(rData == "true"){
+				alert("이미 등록된 사업자 번호 입니다");
+			} else if(rData == "false" && regcheck == "true"){
+				$("#fmtreg").attr("action" , "/seller/sellstoreregrun");
+				$("#fmtreg").attr("method" , "post");
+				$("#fmtreg").submit();
+			}
+		});
+		
 	});
 	
 });
@@ -126,6 +138,14 @@ $(function(){
 						<label for="sell_store_phone"> 업체 연락처 </label> <input
 							type="number" class="form-control" id="sell_store_phone"
 							name="sell_store_phone" />
+					</div>
+					<div class="form-group">
+						<label for="reglocation"> 등록지역</label>
+						<select name="reglocation" required>
+							<option selected disabled>선택</option>
+							<option value="pusan">부산</option>
+							<option value="ulsan">울산</option>
+						</select>
 					</div>
 					<button type="button" class="btn btn-primary btnregstore">등록</button>
 					<button style="float: right;" type="button" class="btn btn-primary"

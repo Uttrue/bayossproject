@@ -48,21 +48,28 @@
  		select * from tbl_sell_member
  	</select>
  	
- 	<!-- 셀러 정식 등록신청 -->
+ 	<!-- 셀러 정식 스토어 등록신청 -->
  	<insert id="sellerStoreReg">
  		insert into tbl_sell_store(sId,sell_store_name, sell_store_regnum,sell_store_ceo,
- 									sell_store_phone, sell_store_fax,sell_store_opendate)
-		values(#{sid},#{sell_store_name},#{sell_store_regnum},#{sell_store_ceo},#{sell_store_phone},#{sell_store_fax},#{sell_store_opendate})
+ 									sell_store_phone, sell_store_fax,sell_store_opendate,reglocation)
+		values(#{sid},#{sell_store_name},#{sell_store_regnum},#{sell_store_ceo},#{sell_store_phone},
+				#{sell_store_fax},#{sell_store_opendate},#{reglocation})
  	</insert>
  	
- 	<!-- 셀러 상태 변경(정식등록 허용/중단) -->
+ 	<!-- 셀러 사업자 등록여부  -->
+ 	<select id="sellstoreRegChk" resultType="int">
+ 		select count(*) from tbl_sell_store
+ 		where sell_store_regnum = #{sell_store_regnum}
+ 	</select>
+ 	
+ 	<!-- 셀러 스토어 상태 변경(정식등록 허용/중단) -->
  	<update id="sellerStorestatus">
  		update tbl_sell_store set 
  		sell_store_status = #{sell_store_status}
  		where seller_reg_no = #{seller_reg_no}
  	</update>
  	
- 	<!-- 셀러 정보 업데이트 -->
+ 	<!-- 셀러 스토어 정보 업데이트 -->
  	<update id="sellerStoreUpdate">
  		update tbl_sell_store set
 	 		sell_store_name = #{sell_store_name},
@@ -70,7 +77,8 @@
 	 		sell_store_regnum = #{sell_store_regnum},
 	 		sell_store_phone = #{sell_store_phone},
 	 		sell_store_opendate = #{sell_store_opendate},
-	 		sell_store_fax = #{sell_store_fax}
+	 		sell_store_fax = #{sell_store_fax},
+	 		reglocation = #{reglocation}
  		where seller_reg_no = #{seller_reg_no}
  	</update>
  	

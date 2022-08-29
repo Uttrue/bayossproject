@@ -54,7 +54,7 @@ font-size: 200%;
 							<span>1</span>
 					  </div>
 					  <div class="media-body">
-						<h3 class="heading">Maintenence<spring:message code="message.index.maintenence"/></h3>
+						<h3 class="heading">Maintenence<%-- <spring:message code="message.index.maintenence"/> --%></h3>
 						<p>Ship Maintenance service
 							Next-generation data provides exceptional flexibility and scalability.</p>
 						<a href="maintenence.html" class="btn-custom d-flex align-items-center justify-content-center"><span class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>

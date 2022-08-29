@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cynetcore.bayoss.service.HomeBoardService;
 import com.cynetcore.bayoss.service.SellerItemService;
+import com.cynetcore.bayoss.vo.HomeBoardVo;
 import com.cynetcore.bayoss.vo.PagingDto;
 import com.cynetcore.bayoss.vo.SellerItemVo;
 
@@ -17,37 +19,19 @@ import com.cynetcore.bayoss.vo.SellerItemVo;
 @RequestMapping(value = "/sub")
 public class boardController {
 	
-	/*@Autowired
-	private SellerService sellerService;*/
+	@Autowired
+	private HomeBoardService homeBoardService;
 	
 	@Autowired
 	private SellerItemService itemService;
 	
-
-	//서비스 페이지 진입
-	@RequestMapping(value = "/maintenence", method = RequestMethod.GET)
-	public String maintenence() {
-	
-		return "sub/maintenence";
-	}
-	//서비스 페이지 진입
-	@RequestMapping(value = "/supplies", method = RequestMethod.GET)
-	public String supplies() {
-	
-		return "sub/supplies";
-	}
-	//서비스 페이지 진입
-	@RequestMapping(value = "/services", method = RequestMethod.GET)
-	public String services() {
-	
-		return "sub/services";
-	}
 	
 	//서비스 인터넷 페이지 진입
-	@RequestMapping(value = "/servicesInternet", method = RequestMethod.GET)
-	public String servicesInternet() {
-		
-		return "sub/servicesInternet";
+	@RequestMapping(value = "/boardcontent", method = RequestMethod.GET)
+	public String servicesInternet(String main_category, String detail_category, Model model) {
+		List<HomeBoardVo> list = homeBoardService.boardSearch(main_category, detail_category);
+		model.addAttribute("boardVo", list);
+		return "sub/homeboard";
 	}
 
 	

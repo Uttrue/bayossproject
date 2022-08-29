@@ -17,7 +17,7 @@ $(function(){
 	var emailnum = "";
 	/* 아이디 중복 체크 */
 	$(".idcheck").click(function(){
-		var sid = $("#cid").val().trim();
+		var cid = $("#cid").val().trim();
 		console.log("cid" , cid);
 		var url = "/user/isuserexist";
 		var sData = {
@@ -27,10 +27,10 @@ $(function(){
 			/* console.log("rData : " , rData); */
 			if(rData == "true"){
 				$("#textidcheck").text("이미 사용중인 아이디 입니다").css("color","red");
-				sidcheck = "false";
+				cidcheck = "false";
 			}else if (rData == "false"){
 				$("#textidcheck").text("사용가능한 아이디 입니다").css("color","blue");
-				sidcheck = "true";
+				cidcheck = "true";
 			}
 		})
 	});
@@ -42,7 +42,7 @@ $(function(){
 		
 		$.ajax({
 			type : "get",
-			url : "/seller/mailCheck?email=" + eamil, 
+			url : "/user/mailCheck?email=" + eamil, 
 			success : function (data) {
 				console.log("data : " +  data);
 				$(".btnemailcheck").attr('disabled',false);
@@ -69,6 +69,11 @@ $(function(){
 	
 	/* 가입 완료 전송시 */
 	$(".btnjoin").click(function(){
+		console.log("cidcheck" , cidcheck);
+		console.log("emailcheck" , emailcheck);
+		console.log("pwcheck" , pwcheck);
+		console.log("pwequlcheck" , pwequlcheck);
+		console.log("cellphonecheck" , cellphonecheck);
 		/* 1. 비밀번호 체크 */
 		chkPW();
 		/* 2. 비밀번호 일치 확인 */
@@ -98,7 +103,7 @@ $(function(){
 	    
 	    /* form 전송전 조건 체크 요건 모두 true 일때 전송 */
 	    if (cidcheck == "true" && emailcheck == "true" &&
-	    		pwcheck == "true" &&pwequlcheck == "true" &&
+	    		pwcheck == "true" && pwequlcheck == "true" &&
 	    		cellphonecheck == "true"){
 	    	$("#fmtsignup").submit();
 	    }
@@ -141,9 +146,9 @@ $(function(){
 		<div class="col-md-4" style="margin-bottom: 5%;">
 				<div><br>
 				</div>
-				<form role="form" id="fmtsignup" action="/seller/sellerjoinrun" method="post">
+				<form role="form" id="fmtsignup" action="/user/userjoinrun" method="post">
 					<div class="form-row">
-						<label for="sid"> 아이디 </label>
+						<label for="cid"> ID </label>
 					</div>
 					<div class="form-row">	
 						<div class="col-sm-9">	
@@ -158,19 +163,19 @@ $(function(){
 					</div>
 					<div class="form-row">
 
-						<label for="spw"> 비밀번호 </label> <input
+						<label for="spw"> PW </label> <input
 							type="password" class="form-control" id="cpw" name="cpw"/>
 					</div>
 					<div class="form-row">
 
-						<label for="spw2"> 비밀번호확인 </label> <input
+						<label for="spw2"> PW check </label> <input
 							type="password" class="form-control" id="cpw2" />
 					</div>
 					<div class="form-row">
 						<div id="pwmatch"></div><br>
 					</div>
 					<div class="form-row">
-						<label for="email"> 이메일 </label>
+						<label for="email"> E-mail </label>
 					</div>
 					<div class="form-row">
 						<div class="col-sm-9">	
@@ -181,23 +186,33 @@ $(function(){
 						</div>
 					</div>
 					<div class="form-row">
-						<label for="cell"> 이메일 인증번호 </label> 
+						<label for="cell"> authentication code number </label> 
 					</div>
 					<div class="form-row">
 					<div class="col-sm-9">
-						<input type="text" class="form-control" id="mailcheckinput" disabled/>
+						<input type="text" class="form-control" placeholder="please enter the six-digit authentication code number" id="mailcheckinput" disabled/>
 						</div>
 						<div class="col-sm-3">
 						<button type="button" class="btn btn-primary btnemailcheck" disabled style="margin-top: 3%; float: right;">인증번호확인</button>
 					</div>
 					</div>
+					<div class="form-row">
+
+						<label for="shipname"> ship name </label> <input
+							type="text" class="form-control" placeholder="blank space available" id="shipname" name="shipname"/>
+					</div>
+					<div class="form-row">
+
+						<label for="address"> address </label> <input
+							type="text" class="form-control" placeholder="blank space available" id="address" name="address"/>
+					</div>
 					<div class="form-group">
-						<label for="cell"> 핸드폰번호 </label> <input
+						<label for="cell"> cellphone </label> <input
 							type="number" class="form-control" id="cellphone" name="cellphone" />
 					</div>
-					<button type="button" class="btn btn-primary btnjoin">가입</button>
+					<button type="button" class="btn btn-primary btnjoin">join</button>
 					<button style="float: right;" type="button" class="btn btn-primary"
-					 onclick="history.back()">취소</button>
+					 onclick="history.back()">cancel</button>
 					 
 				</form>
 			</div>

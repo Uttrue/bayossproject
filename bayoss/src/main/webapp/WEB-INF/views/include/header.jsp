@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
+ 	
     <link rel="stylesheet" href="/resources/css/animate.css">
     
     <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
@@ -41,9 +41,21 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 			    		<p class="mb-0 d-flex">
-			    			<a href="/user/login" class="d-flex align-items-center justify-content-center"><span>login</span></a>
-			    			<a href="/user/joinus" class="d-flex align-items-center justify-content-center"><span>joinus</span></a>
-			    			<a href="/user/faqboard" class="d-flex align-items-center justify-content-center"><span>contact</span></a>
+			    			<c:if test="${empty userVo}">
+			    				<a href="/user/login" class="d-flex align-items-center justify-content-center loginicon"><span>login</span></a>
+			    				<a href="/user/joinus" class="d-flex align-items-center justify-content-center loginicon"><span>joinus</span></a>
+			    			</c:if>
+			    			<c:if test="${not empty userVo}">
+			    				<a href="/user/logout" class="d-flex align-items-center justify-content-center loginicon"><span>logout</span></a>
+			    				<a href="/user/mypge" class="d-flex align-items-center justify-content-center loginicon"><span>mypage</span></a>
+			    			</c:if>
+			    			<c:if test="${userVo.cid eq 'admin'}">
+			    				<a href="/user/login" class="d-flex align-items-center justify-content-center loginicon"><span>관리자페이지</span></a>
+			    			</c:if>
+			    				
+			    			
+			    			
+			    			<a href="/user/faqboard" class="d-flex align-items-center justify-content-center loginicon"><span>contact</span></a>
 			    			<a href="#" class="d-flex align-items-center justify-content-center"><span><i class="fa fa-globe" aria-hidden="true"></i></span></a>
 			    		</p>
 		        </div>
@@ -60,29 +72,29 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav ml-auto">
 				
-				<li class="nav-item dropdown"><a href="/sub/maintenence" class="nav-link"><spring:message code="message.index.title"/></a>
+				<li class="nav-item dropdown"><a class="nav-link">MAINTENENCE<%-- <spring:message code="message.index.title"/> --%></a>
 					<ul class="dropdown-menu">
-						<li><a href="sub/maintenence/ict.html">ICT        </a></li>
-						<li><a href="sub/maintenence/machinery.html">Machinery</a></li>
-						<li><a href="sub/maintenence/metalFabrication.html">Metal Fabrication</a></li>
+						<li><a href="/sub/boardcontent?main_category=maintenence&detail_category=ict">ICT        </a></li>
+						<li><a href="/sub/boardcontent?main_category=maintenence&detail_category=machinery">Machinery</a></li>
+						<li><a href="/sub/boardcontent?main_category=maintenence&detail_category=metalfabrication">Metal Fabrication</a></li>
 					</ul>
 				</li>
-				<li class="nav-item dropdown"><a href="/sub/supplies" class="nav-link">Supplies</a>
+				<li class="nav-item dropdown"><a class="nav-link">Supplies</a>
 					<ul class="dropdown-menu">
-						<li><a href="sub/supplies/bunkering.html">Bunkering</a></li>
-						<li><a href="sub/supplies/spareparts.html">Spare Parts</a></li>
-						<li><a href="sub/supplies/consumables.html">Consumables</a></li>
-						<li><a href="sub/supplies/hse.html">HSE &amp; Sagety</a></li>
-						<li><a href="sub/supplies/foodstuff.html">Foodstuff</a></li>
+						<li><a href="/sub/boardcontent?main_category=supplies&detail_category=bunkering">Bunkering</a></li>
+						<li><a href="/sub/boardcontent?main_category=supplies&detail_category=spareparts">Spare Parts</a></li>
+						<li><a href="/sub/boardcontent?main_category=supplies&detail_category=consumables">Consumables</a></li>
+						<li><a href="/sub/boardcontent?main_category=supplies&detail_category=hse">HSE &amp; Sagety</a></li>
+						<li><a href="/sub/boardcontent?main_category=supplies&detail_category=foodstuff">Foodstuff</a></li>
 					</ul>
 				</li>
-				<li class="nav-item dropdown"><a href="/sub/services" class="nav-link">Services</a>
+				<li class="nav-item dropdown"><a class="nav-link">Services</a>
 					<ul class="dropdown-menu">
-						<li><a href="/sub/servicesInternet">Inernet</a></li>
-						<li><a href="sub/services/pickup.html">Pick-Up</a></li>
-						<li><a href="sub/services/medicalcare.html">Medical Care</a></li>
-						<li><a href="sub/services/tour.html">Tour</a></li>
-						<li><a href="sub/services/event.html">Event</a></li>
+						<li><a href="/sub/boardcontent?main_category=services&detail_category=internet">Inernet</a></li>
+						<li><a href="/sub/boardcontent?main_category=services&detail_category=pickup">Pick-Up</a></li>
+						<li><a href="/sub/boardcontent?main_category=services&detail_category=medicalcare">Medical Care</a></li>
+						<li><a href="/sub/boardcontent?main_category=services&detail_category=tour">Tour</a></li>
+						<li><a href="/sub/boardcontent?main_category=services&detail_category=event">Event</a></li>
 					</ul>
 				</li>
 				<li class="nav-item dropdown"><a href="/sub/shopping?page=1" class="nav-link">Shopping</a>

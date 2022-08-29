@@ -22,7 +22,7 @@ public class TestSeller {
 	//셀러 일반 등록
 	@Test
 	public void testSellerInsert() {
-		SellerVo sellerVo = new SellerVo("test01", "test01", "test02@gmail.com", "010-1234-5678");
+		SellerVo sellerVo = new SellerVo("test05", "test05", "test02@gmail.com", "010-1234-5678");
 		boolean result = sellerDao.sellerInsert(sellerVo);
 		System.out.println("testSellerInsert, result : " + result);
 	}
@@ -69,7 +69,7 @@ public class TestSeller {
 	//셀러 정식 등록 신청
 	@Test
 	public void testSellerStoreReg() {
-		SellStoreVo storeVo = new SellStoreVo("test01", "하버맥스", "강희욱", "6038184360", 0511111111, "20130619");
+		SellStoreVo storeVo = new SellStoreVo("test01", "하버맥스", "강희욱", "6038184360", 0511111111, "20130619","ulsan");
 		boolean result = sellerDao.sellerStoreReg(storeVo);
 		System.out.println("testSellerStoreReg: " + result);
 	}

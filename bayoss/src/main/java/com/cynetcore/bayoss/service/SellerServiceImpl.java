@@ -90,6 +90,12 @@ public class SellerServiceImpl implements SellerService {
 		List<SellStoreVo> sellerStoreList = sellerDao.sellerStoreList();
 		return sellerStoreList;
 	}
+	//셀러 사업자 등록여부
+	@Override
+	public int sellstoreRegChk(String sell_store_regnum) {
+		int count = sellerDao.sellstoreRegChk(sell_store_regnum);
+		return count;
+	}
 	
 	
 }

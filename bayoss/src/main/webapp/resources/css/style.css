@@ -9824,3 +9824,6 @@ textarea.form-control {
   place-items: center;
   min-height: 100vh;
 }
+.loginicon{
+	width: 300%;
+}

@@ -51,7 +51,7 @@ public class sellerBoardController {
 			String originalFilename = file.getOriginalFilename();
 			System.out.println("sellinsertrun, originalFilename" + originalFilename);
 			byte[] fileData = file.getBytes();
-			String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH2, fileData);
+			String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
 			itemVo.setItem_mainimage(uploadFileName);
 			
 	/*		SellerFileUploader.Connect();*/
@@ -77,7 +77,7 @@ public class sellerBoardController {
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile file) throws Exception{
 		String originalFilename = file.getOriginalFilename();
 		byte[] fileData = file.getBytes();
-		String imagename = SellerFileUploader.fileUpload(originalFilename, URLPATH2, fileData);
+		String imagename = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
 	/*	SellerFileUploader.Connect();*/
 	/*	String imagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);
 		SellerFileUploader.disconnect();*/
@@ -96,7 +96,7 @@ public class sellerBoardController {
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
 		SellerFileUploader.disconnect();*/
-		FileInputStream fis = new FileInputStream(URLPATH2+ "/" +filename);
+		FileInputStream fis = new FileInputStream(URLPATH+ "/" +filename);
 		byte[] data = IOUtils.toByteArray(fis);
 		fis.close();
 		return data;
@@ -154,7 +154,7 @@ public class sellerBoardController {
 		/*		String fileimagename =  SellerFileUploader.upload(originalFilename, URLPATH,file);*/
 		//		SellerFileUploader.disconnect();
 				byte[] fileData = file.getBytes();
-				String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH2, fileData);
+				String uploadFileName = SellerFileUploader.fileUpload(originalFilename, URLPATH, fileData);
 				itemVo.setItem_mainimage(uploadFileName);
 				System.out.println("sellinsertrun, imagename" + uploadFileName);
 				System.out.println("sellinsertrun, itemVo" + itemVo);

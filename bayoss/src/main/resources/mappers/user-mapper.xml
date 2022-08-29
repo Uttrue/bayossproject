@@ -15,6 +15,13 @@
 		where cId = #{cid}
  	</select>
  	
+ 	<!-- 유저 정보 조회 로그인 -->
+ 	<select id="userlogin" resultType="userVo">
+ 		select * from tbl_user
+ 		where cId = #{cid} and cPw = #{cpw} 
+ 			and status = "T"
+ 	</select>
+ 	
  	<!-- 유저 정보 조회 -->
 	<select id="userInfo" resultType="userVo">
 		select * from tbl_user

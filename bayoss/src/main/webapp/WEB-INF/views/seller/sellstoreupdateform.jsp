@@ -100,6 +100,14 @@ $(function(){
 							type="number" class="form-control" id="sell_store_phone"
 							name="sell_store_phone" />
 					</div>
+					<div class="form-group">
+						<label for="reglocation"> 등록지역</label>
+						<select name="reglocation" required>
+							<option selected disabled>선택</option>
+							<option value="pusan">부산</option>
+							<option value="ulsan">울산</option>
+						</select>
+					</div>
 					<button type="button" class="btn btn-primary btnupdate">수정</button>
 					<button type="button" class="btn btn-warning btnupdaterun" style="display: none;">수정</button>
 					<button style="float: right;" type="button" class="btn btn-primary"

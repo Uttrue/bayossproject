@@ -6,9 +6,10 @@
  	<!-- 아이템 등록 -->
  	<insert id="itemInsert">
  		insert into tbl_sell_item(sId, item_title, item_cost, item_start_date, item_end_date,item_mainimage,
- 								item_content,item_amount,sell_store_name)
+ 								item_content,item_amount,sell_store_name, item_status, reglocation)
 		values(#{sid},#{item_title},#{item_cost},#{item_start_date, jdbcType=DATE},#{item_end_date, jdbcType=DATE},
-				#{item_mainimage, jdbcType=VARCHAR}, #{item_content},#{item_amount},#{sell_store_name})
+				#{item_mainimage, jdbcType=VARCHAR}, #{item_content},#{item_amount},
+				#{sell_store_name},#{item_status},#{reglocation})
  	</insert>
  	
  	
@@ -28,7 +29,8 @@
 			item_mainimage = #{item_mainimage},
 			item_content = #{item_content},
 			item_amount = #{item_amount},			
-			item_status = #{item_status}			
+			item_status = #{item_status},
+			reglocation = #{reglocation}			
 		where ino = #{ino}
 	</update>
 	
@@ -46,7 +48,9 @@
         	FROM tbl_sell_item
         	where sId = #{sid} and item_delete = 'F' <include refid="search3"></include> 
         	order by ino desc) R1
-		LIMIT #{pagingDto.perPage, jdbcType=INTEGER} OFFSET #{pagingDto.startRow, jdbcType=INTEGER};
+        order by ino desc
+		LIMIT #{pagingDto.perPage, jdbcType=INTEGER} OFFSET #{pagingDto.startRow, jdbcType=INTEGER}
+		
  		
  	</select>
  	
@@ -83,7 +87,8 @@
         	FROM tbl_sell_item
         	<include refid="search"></include> 
         	order by ino desc) R1
-		LIMIT #{perPage, jdbcType=INTEGER} OFFSET #{startRow, jdbcType=INTEGER};
+       	order by ino desc
+		LIMIT #{perPage, jdbcType=INTEGER} OFFSET #{startRow, jdbcType=INTEGER}
  		
  	</select>
  	<sql id="search">
@@ -131,4 +136,5 @@
  			</choose>
  		</if>
  	</sql>
+ 
  </mapper>

@@ -18,7 +18,8 @@ create table tbl_sell_store(
 	sell_store_phone int not null,
 	sell_store_fax int,
 	sell_store_status char(1) default 'F',
-	sell_store_regdate date default current_timestamp
+	sell_store_regdate date default current_timestamp,
+	reglocation varchar(45) not null
 );
 
 create table tbl_sell_item(
@@ -30,6 +31,11 @@ create table tbl_sell_item(
 	item_end_date date,
 	mainimage varchar(100) not null,
 	item_content varchar(1000) not null,
-	sell_store_status char(1) default 'T'
+	sell_store_status char(1) default 'T',
+	item_amount  int,
+	sell_store_name varchar(100) not null,
+	item_delete char(1) default 'F',
+	reglocation varchar(45) not null
+	
 );
 

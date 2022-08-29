@@ -40,7 +40,7 @@ public class PagingDto {
 
 	public void setPage(int page) {
 		this.page = page;
-		setStartRow(page * perPage - (perPage - 1)); // 시작 행 설정
+		setStartRow((page * perPage - (perPage - 1))-1); // 시작 행 설정 마지막 -1은 오라클과 시작행0부터로 달라서 빼줌
 		setEndRow(page * perPage); // 종료 행 설정
 		setStartPage(((page - 1) / 10) * 10 + 1); // 시작 페이지 설정
 		setEndPage(((page - 1) / 10 + 1) * 10); // 종료 페이지 설정

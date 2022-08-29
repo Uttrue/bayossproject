@@ -5,15 +5,62 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!-- header  -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
+
 <script type="text/javascript">
 $(function(){
-	//스크롤 다운시 컨텐츠 출력
-	/* $(window).scroll(function(){
-		if($(window).scrollTop() == $(document).height() - $(window).height()){
-			console.log("scrolldown");
-			$("#item_content").html('${iteminfo.item_content}');
+	//초기 변수 선언
+	var ino = ${iteminfo.ino};
+	var cid = "${userVo.cid}";
+	var item_title = "${iteminfo.item_title}";
+	var sid = "${iteminfo.sid}";
+	//초기 좋아요 출력
+	getislike();
+	//초기 좋아요 카운트 출력
+	getcountlike();
+	//좋아요 입력,삭제
+	$("#likeheart").click(function(){
+		var url = "/userlike/likestatus";
+		var sData = {
+				"ino" : ino,
+				"cid" : cid,
+				"item_title" : item_title,
+				"sid" : sid
+		};
+		//미 로그인시 좋아요 불가
+		if(cid !== null && cid !== ""){
+			$.get(url,sData,function(rData){
+				getislike();
+				getcountlike();
+			});
 		}
-	}); */
+	});
+	//초기 유저 좋아요 함수
+	function getislike(){
+		var url = "/userlike/getislike";
+		var sData = {
+				"ino" : ino,
+				"cid" : cid
+		};
+		$.get(url,sData, function(rData){
+			if(rData == "true"){
+				$("#likeheart").css("color", "red");
+			} else if(rData == "false"){
+				$("#likeheart").css("color", "gray");
+			}
+		});
+	}
+	//초기 아이템 좋아요 갯수 함수
+	function getcountlike(){
+		var url = "/userlike/getcountlike";
+		var sData = {
+				"sid" : sid,
+				"ino" : ino
+		};
+		$.get(url, sData, function(rData){
+			$(".likenumber").text(rData);
+		});
+	}
+		
 });
 </script>
 
@@ -39,6 +86,9 @@ $(function(){
 			<img src="/sellerboard/displayimages?filename=${iteminfo.item_mainimage}" width="100%;">
 		</div>
 		<div class="col-md-6">
+					<div style="display: inline-block; float: right;">
+						<a style="color: gray; cursor: pointer;" id="likeheart" ><i class="fa fa-heart fa-3x likenumber" aria-hidden="true">0</i></a>
+					</div> 
 				<form role="form">
 					<input type="hidden" value="${iteminfo.ino}">
 					<div class="form-group">
@@ -65,8 +115,6 @@ $(function(){
 							</c:forEach>
 						</select>
 					</div>
-					
-					
 					<button type="submit" class="btn btn-primary">구매하기</button>
 				</form>
 			</div>
@@ -84,10 +132,10 @@ $(function(){
 </section>
 
 <script type="text/javascript">
-$('.selectpicker').selectpicker({
+/* $('.selectpicker').selectpicker({
     style: 'btn-info',
     size: 4
-});
+}); */
 </script>
 
 

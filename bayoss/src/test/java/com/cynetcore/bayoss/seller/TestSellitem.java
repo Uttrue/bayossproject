@@ -28,7 +28,8 @@ public class TestSellitem {
 	@Test
 	public void testItemInsert() {
 		for(int i = 1; i < 100; i++ ) {
-			SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품2"+i, 10000, null, null ,"e09691e9-8bee-468a-bb6b-d884bb532162_디지털 트윈.PNG", "<br><p><font color=\"red\"><br></font></p><p><font color=\"red\"><br></font></p><p><img src=\"/sellerboard/displayimages?filename=a7943171-372c-4846-aa5b-cadfceaee9ca_a9dc1013-aca7-4638-bd1c-bf05e793cfa9_KakaoTalk_20220628_152452790_01.jpg\" style=\"width: 100%;\"><font color=\"red\"><br></font></p>");
+			SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품2"+i, 10000, null, null ,
+					"e09691e9-8bee-468a-bb6b-d884bb532162_디지털 트윈.PNG", "<br><p><font color=\"red\"><br></font></p><p><font color=\"red\"><br></font></p><p><img src=\"/sellerboard/displayimages?filename=a7943171-372c-4846-aa5b-cadfceaee9ca_a9dc1013-aca7-4638-bd1c-bf05e793cfa9_KakaoTalk_20220628_152452790_01.jpg\" style=\"width: 100%;\"><font color=\"red\"><br></font></p>","pusan");
 			boolean result = itemDao.itemInsert(sellerItemVo);
 		//	System.out.println("testItemInsert, result : " + result);
 		}
@@ -49,7 +50,7 @@ public class TestSellitem {
 	//아이템 업데이트
 	@Test
 	public void testItemUpdate() {
-		SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품11", 100001, null, null ,"1아아아아아", "1아아아아");
+		SellerItemVo sellerItemVo = new SellerItemVo("test01", "테스트제품11", 100001, null, null ,"1아아아아아", "1아아아아","pusan");
 		boolean result = itemDao.itemUpdate(sellerItemVo);
 		System.out.println("testItemUpdate, result : " + result);
 	}

@@ -21,7 +21,7 @@ public class TestUser {
 	//유저 등록
 	@Test
 	public void testuserInsert() {
-		UserVo UserVo = new UserVo("test01", "test01", "test02@gmail.com", "010-1234-5678");
+		UserVo UserVo = new UserVo("test02", "1234", "test02@gmail.com", "0100000000");
 		boolean result = userDao.userInsert(UserVo);
 		System.out.println("testuserInsert, result : " + result);
 	}
@@ -45,7 +45,7 @@ public class TestUser {
 	@Test
 	public void testuserDelete() {
 		UserVo UserVo = new UserVo();
-		UserVo.setcid("test01");
+		UserVo.setCid("test01");
 		UserVo.setStatus("F");
 		boolean result = userDao.userDelete(UserVo);
 		System.out.println("testuserDelete" + result);
@@ -55,7 +55,7 @@ public class TestUser {
 	@Test
 	public void testuserInfo() {
 		UserVo UserVo = new UserVo();
-		UserVo.setcid("test01");
+		UserVo.setCid("test01");
 		UserVo userInfo = userDao.userInfo(UserVo);
 		System.out.println("testuserInfo" + userInfo);
 	}

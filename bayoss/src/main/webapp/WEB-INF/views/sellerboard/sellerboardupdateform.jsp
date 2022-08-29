@@ -58,6 +58,7 @@ $(function(){
 					<input type="hidden" name="sid" value="${sellerVo.sid}">
 					<input type="hidden" name="ino" value="${iteminfo.ino}">
 					<input type="hidden" name="sell_store_name" value="${storeInfo.sell_store_name}">
+					<input type="hidden" name="reglocation" value="${storeInfo.reglocation}">
 					<div class="form-group">
 						<label for="item_title">물품명</label> <input type="text"
 							class="form-control" id="item_title" name="item_title" value="${iteminfo.item_title}" />

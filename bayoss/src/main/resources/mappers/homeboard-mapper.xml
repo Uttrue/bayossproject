@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cynetcore.bayoss.mappers.homeboard">
+ 	<!-- 메인 글 쓰기 -->
+ 	<insert id="boardInsert">
+ 		insert into tbl_homeboard(sId, main_category,detail_category,content,reglocation)
+		values(#{sid},#{main_category},#{detail_category},#{content},#{reglocation})
+ 	</insert>
+ 	
+ 	<!-- 섹션별 조회  -->
+ 	<select id="boardSearch" resultType="HomeBoardVo">
+ 		select * from tbl_homeboard
+ 		where main_category = #{main_category} and detail_category = #{detail_category}
+ 		order by hno desc
+ 	</select>
+ 	
+ 	<!-- 보드 리스트 조회 -->
+ 	<select id="boardList" resultType="HomeBoardVo">
+ 		select * from tbl_homeboard
+ 		order by hno desc
+ 	</select>
+ 	
+ 	
+ </mapper>

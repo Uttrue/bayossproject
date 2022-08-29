@@ -153,6 +153,17 @@ public class sellerController {
 		return "seller/sellstorejoin";
 	}
 	
+	//스토어 등록전 사업자번호 등록여부
+	@RequestMapping(value = "/sellstoreRegChk", method = RequestMethod.GET)
+	@ResponseBody
+	public String sellstoreRegChk(String sell_store_regnum) {
+		int count = sellerService.sellstoreRegChk(sell_store_regnum);
+		if(count > 0) {
+			return "true";
+		} 
+		return "false";
+	}
+	
 	//셀러 스토어 등록  실행
 	@RequestMapping(value = "/sellstoreregrun", method = RequestMethod.POST)
 	public String sellstoreregrun(SellStoreVo sellStoreVo, RedirectAttributes rttr) {

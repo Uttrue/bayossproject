@@ -5,7 +5,7 @@
 <!-- header  -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-
+<c:forEach items="${boardVo}" begin="0" end="0" var="boardVo">
 <section class="ftco-counter" id="section-counter">
 	<div class="container">
 		<div class="row">
@@ -13,7 +13,7 @@
 				class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
 				<div class="block-18 text-center">
 					<div class="detailtitle">
-						<span>services</span>
+						<span>${boardVo.main_category}</span>
 					</div>
 				</div>
 			</div>
@@ -21,8 +21,13 @@
 	</div>
 </section>
 
-
-
-
+<section>
+	<div class="container">
+		<div class="row">
+		${boardVo.content}
+		</div>
+	</div>
+</section>
+</c:forEach>
 <!-- footer  -->
 <%@ include file="/WEB-INF/views/include/footer.jsp" %>

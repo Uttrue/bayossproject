@@ -3,11 +3,13 @@ package com.cynetcore.bayoss.vo;
 import java.sql.Date;
 
 public class UserVo {
-
+	private int cno;
 	private String cid;
 	private String cpw;
 	private String email;
 	private String cellphone;
+	private String shipname;
+	private String address;
 	private Date regdate;
 	private String status;
 	
@@ -23,31 +25,62 @@ public class UserVo {
 		this.cellphone = cellphone;
 	}
 
-	
-
-	public UserVo(String cid, String cpw, String email, String cellphone, Date regdate, String status) {
+	public UserVo(String cid, String cpw, String email, String cellphone, String shipname) {
 		super();
 		this.cid = cid;
 		this.cpw = cpw;
 		this.email = email;
 		this.cellphone = cellphone;
+		this.shipname = shipname;
+	}
+
+	public UserVo(String cid, String cpw, String email, String cellphone, String shipname, String address) {
+		super();
+		this.cid = cid;
+		this.cpw = cpw;
+		this.email = email;
+		this.cellphone = cellphone;
+		this.shipname = shipname;
+		this.address = address;
+	}
+
+	public UserVo(int cno, String cid, String cpw, String email, String cellphone, String shipname, String address,
+			Date regdate, String status) {
+		super();
+		this.cno = cno;
+		this.cid = cid;
+		this.cpw = cpw;
+		this.email = email;
+		this.cellphone = cellphone;
+		this.shipname = shipname;
+		this.address = address;
 		this.regdate = regdate;
 		this.status = status;
 	}
 
-	public String getcid() {
+	
+	
+	public int getCno() {
+		return cno;
+	}
+
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
+
+	public String getCid() {
 		return cid;
 	}
 
-	public void setcid(String cid) {
+	public void setCid(String cid) {
 		this.cid = cid;
 	}
 
-	public String getcpw() {
+	public String getCpw() {
 		return cpw;
 	}
 
-	public void setcpw(String cpw) {
+	public void setCpw(String cpw) {
 		this.cpw = cpw;
 	}
 
@@ -65,6 +98,22 @@ public class UserVo {
 
 	public void setCellphone(String cellphone) {
 		this.cellphone = cellphone;
+	}
+
+	public String getShipname() {
+		return shipname;
+	}
+
+	public void setShipname(String shipname) {
+		this.shipname = shipname;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Date getRegdate() {
@@ -85,10 +134,9 @@ public class UserVo {
 
 	@Override
 	public String toString() {
-		return "SellerVo [cid=" + cid + ", cpw=" + cpw + ", email=" + email + ", cellphone=" + cellphone + ", regdate="
-				+ regdate + ", status=" + status + "]";
+		return "UserVo [cno=" + cno + ", cid=" + cid + ", cpw=" + cpw + ", email=" + email + ", cellphone=" + cellphone
+				+ ", shipname=" + shipname + ", address=" + address + ", regdate=" + regdate + ", status=" + status
+				+ "]";
 	}
-
-	
 	
 }

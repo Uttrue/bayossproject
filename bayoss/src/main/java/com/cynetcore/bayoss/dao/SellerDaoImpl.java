@@ -118,6 +118,13 @@ public class SellerDaoImpl implements SellerDao {
 		return storeList;
 	}
 	
+	//셀러 스토어 사업자번호 등록여부
+	@Override
+	public int sellstoreRegChk(String sell_store_regnum) {
+		int count = sqlSession.selectOne(NAMESPACE + "sellstoreRegChk", sell_store_regnum);
+		return count;
+	}
+	
 
 	
 

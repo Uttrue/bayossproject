@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cynetcore.bayoss.mappers.userlike">
+ 	<!-- 유저 좋아요 -->
+ 	<insert id="likeInsert">
+ 		insert into tbl_board_like(ino, cId, item_title, sId)
+		values(#{ino},#{cid},#{item_title},#{sid})
+ 	</insert>
+ 	
+ 	<!-- 유저 좋아요 내용 -->
+ 	<select id="islikeexist" resultType="UserLikeVo">
+ 		select * from tbl_board_like
+		where cId = #{cid} and ino = #{ino} 
+ 	</select>
+ 	
+	<!-- 유저 좋아요 상태변경 -->
+	<update id="likestatus">
+		update tbl_board_like set
+			status = #{status}
+		where lno = #{lno}
+	</update>
+ 	
+ 	<!-- 유저 좋아요 리스트 조회 -->
+ 	<select id="userLikeList" resultType="UserLikeVo">
+ 		select * from tbl_board_like
+ 		where cId = #{cid} and status = 'T'
+ 	</select>
+ 	
+ 	<!-- 셀러 게시물별 좋아요 카운트 -->
+ 	<select id="getcountlike" resultType="int">
+ 		select count(*) from tbl_board_like
+ 		where sId = #{sid} and ino = #{ino} and status = 'T'
+ 	</select>
+ 	
+ 	<!-- 셀러 좋아요 리스트 조회 -->
+ 	<select id="sellerLikeList" resultType="UserLikeVo">
+ 		select * from tbl_board_like
+ 		where sId = #{sid} and status = 'T'
+ 	</select>
+ 	
+ </mapper>

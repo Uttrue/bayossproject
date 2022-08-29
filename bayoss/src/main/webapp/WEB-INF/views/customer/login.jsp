@@ -25,22 +25,21 @@ $(function(){
 			<div class="col-md-4">
 				<div><br>
 				</div>
-				<form role="form">
+				<form role="form" action="/user/userloginrun" method="post">
 					<div class="form-group">
-						<spring:message code="message.index.title"/>
-						<label for="id"> 아이디 </label> <input type="text"
-							class="form-control" id="id" />
+						<label for="id"> ID </label> <input type="text"
+							class="form-control" id="id" name="cid"/>
 					</div>
 					<div class="form-group">
 
-						<label for="pw"> 비밀번호 </label> <input
-							type="password" class="form-control" id="pw" />
+						<label for="pw"> password </label> <input
+							type="password" class="form-control" id="pw" name="cpw"/>
 					</div>
 					<div class="checkbox">
-						<label> <input type="checkbox" /> 아이디 저장</label>
+						<label> <input type="checkbox" /> ID save</label>
 					</div>
-					<button type="submit" class="btn btn-primary">로그인</button>
-					<a style="float: right;" type="button" class="btn btn-primary"href="/seller/sellerjoin">회원가입</a>
+					<button type="submit" class="btn btn-primary">login</button>
+					<a style="float: right;" type="button" class="btn btn-primary"href="/user/joinus">joinus</a>
 					
 				</form>
 				<br>

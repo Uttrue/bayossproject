@@ -9,6 +9,8 @@ public interface UserService {
 	public boolean userInsert(UserVo userVo);
 	//유저 아이디 중복 조회
 	public boolean isuserexist(String cid);
+	//유저 로그인
+	public UserVo userlogin(String cid, String cpw);
 	//유저 정보 조회
 	public UserVo userInfo(UserVo userVo);
 	//유저 정보 업데이트

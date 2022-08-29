@@ -58,7 +58,7 @@
       <div class="sidebar-heading">
         category
       </div>
-       <c:if test="${storeInfo.sell_store_status eq 'T'}">  
+       <c:if test="${storeInfo.sell_store_status eq 'T' && storeInfo.sid ne 'admin'}">  
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
@@ -68,7 +68,8 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">목록</h6>
-            <a class="collapse-item" href="/sellerboard/selllist?sid=${sellerVo.sid}&page=1">리스트</a>
+            <a class="collapse-item" href="/sellerboard/selllist?sid=${sellerVo.sid}"
+            >전체리스트</a>
             <a class="collapse-item" href="/sellerboard/sellerboardform">등록</a>
           </div>
         </div>
@@ -89,6 +90,29 @@
         </div>
       </li>
       </c:if>
+      	<c:if test="${storeInfo.sid eq 'admin'}">
+	       <li class="nav-item">
+	        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+	          aria-controls="collapseForm">
+	          <i class="fab fa-fw fa-wpforms"></i>
+	          <span>관리자</span>
+	        </a>
+	        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+	          <div class="bg-white py-2 collapse-inner rounded">
+	            <h6 class="collapse-header">셀러관리</h6>
+	            <a class="collapse-item" href="form_basics.html">Form Basics</a>
+	            <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
+	          </div>
+	          <div class="bg-white py-2 collapse-inner rounded">
+	            <h6 class="collapse-header">홈관리</h6>
+	            <a class="collapse-item" href="/admin/adminboardform">홈화면 글변경</a>
+	            <a class="collapse-item" href="/admin/adminhomelist">홈화면 리스트</a>
+	            <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
+	          </div>
+	        </div>
+	      </li>
+	      </c:if>
+      
     </ul>
    
     <!-- Sidebar -->

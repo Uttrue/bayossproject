@@ -22,6 +22,8 @@ public interface SellerService {
 	public List<SellerVo> sellerList();
 	//셀러 업체 등록
 	public boolean sellerStoreReg(SellStoreVo storeVo);
+	//셀러 업체 사업자번호 등록 여부
+	public int sellstoreRegChk(String sell_store_regnum);
 	//셀러 업체 승인/정지
 	public boolean sellerStorestatus(SellStoreVo storeVo);
 	//셀러 업체 정보 수정
