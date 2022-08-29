@@ -1,10 +1,8 @@
 package com.cynetcore.bayoss.controller;
 
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cynetcore.bayoss.service.HomeBoardService;
-import com.cynetcore.bayoss.service.SellerItemService;
 import com.cynetcore.bayoss.util.SellerFileUploader;
 import com.cynetcore.bayoss.vo.HomeBoardVo;
-import com.cynetcore.bayoss.vo.PagingDto;
-import com.cynetcore.bayoss.vo.SellerItemVo;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -32,8 +27,8 @@ public class adminController {
 	private HomeBoardService boardService;
 	
 //	final static String URLPATH = "bayoss/seller";
-	final static String URLPATH = "C://bayossfile"; //로컬개발
-//	final static String URLPATH = "/var/lib/tomcat9/webapps/ROOT/images/admin"; //서버 업로드용
+//	final static String URLPATH = "C://bayossfile"; //로컬개발
+	final static String URLPATH = "/var/lib/tomcat9/webapps/ROOT/images/admin"; //서버 업로드용
 
 	//홈 화면 등록 페이지
 	@RequestMapping(value = "/adminboardform", method = RequestMethod.GET)
