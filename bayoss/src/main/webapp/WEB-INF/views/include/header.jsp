@@ -76,7 +76,6 @@
 					<ul class="dropdown-menu">
 						<li><a href="/sub/boardcontent?main_category=maintenence&detail_category=ict">ICT        </a></li>
 						<li><a href="/sub/boardcontent?main_category=maintenence&detail_category=machinery">Machinery</a></li>
-						<li><a href="/sub/boardcontent?main_category=maintenence&detail_category=metalfabrication">Metal Fabrication</a></li>
 					</ul>
 				</li>
 				<li class="nav-item dropdown"><a class="nav-link">Supplies</a>
@@ -99,13 +98,13 @@
 				</li>
 				<li class="nav-item dropdown"><a href="/sub/shopping?page=1" class="nav-link">Shopping</a>
 					<ul class="dropdown-menu">
-						<li><a href="sub/shopping/cosmetics.html">Cosmetics</a></li>
-						<li><a href="sub/shopping/accessories.html">Accessories</a></li>
-						<li><a href="sub/shopping/nutrient.html">Nutrient</a></li>
-						<li><a href="sub/shopping/medicals.html">Medicals</a></li>
-						<li><a href="sub/shopping/apparel.html">Apparel</a></li>
-						<li><a href="sub/shopping/sumdries.html">Sumdries</a></li>
-						<li><a href="sub/shopping/processedfood.html">Processed Food</a></li>
+						<li><a href="/sub/shopping/cosmetics">Cosmetics</a></li>
+						<li><a href="/sub/shopping/accessories">Accessories</a></li>
+						<li><a href="/sub/shopping/nutrient">Nutrient</a></li>
+						<li><a href="/sub/shopping/medicals">Medicals</a></li>
+						<li><a href="/sub/shopping/apparel">Apparel</a></li>
+						<li><a href="/sub/shopping/sumdries">Sumdries</a></li>
+						<li><a href="/sub/shopping/processedfood">Processed Food</a></li>
 					</ul>
 				</li>
 				<li class="nav-item dropdown"><a href="#" class="nav-link">Review</a>

@@ -70,7 +70,6 @@ $(function(){
 						  	<option disabled selected>카테고리</option>
 						  	<option value="ict">ict</option>
 						  	<option value="machinery">machinery</option>
-						  	<option value="metalfabrication">metal fabrication</option>
 						  </select>
 						  
 						  <select class="form-group" required id="detail_supplies" name="detail_category" style="display: none;">

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cynetcore.bayoss.mappers.review">
+ 
+ 	<!-- 리뷰 입력 -->
+ 	<insert id="reviewInsert">
+ 		insert into tbl_review(cId, ino, sId, review, item_title)
+		values(#{cid},#{ino},#{sid},#{review},#{item_title})
+ 	</insert>
+ 	
+	<!-- 리뷰 업데이트 -->
+	<update id="reviewUpdate">
+		update tbl_review set
+			review = #{review}
+		where rno = #{rno}
+	</update>
+	
+	<!-- 리뷰 조회 -->
+	<select id="reviewStatus">
+		select * from tbl_review
+		where rno = #{rno}
+	</select>
+	
+	<!-- 리뷰 상태변경-->
+	<update id="reviewDelete">
+		update tbl_review set
+			status = #{status}
+		where rno = #{rno}
+	</update>
+ 	
+ 	<!-- 아이템별 리뷰 리스트 조회 -->
+ 	<select id="reviewListByItem" resultType="ReviewVo">
+ 		select * from tbl_review
+ 		where ino = #{ino} and status = 'T'
+ 		order by rno desc
+ 	</select>
+ 	
+ 	<!-- 셀러 전체 리뷰 리스트 조회 -->
+ 	<select id="reviewList" resultType="ReviewVo">
+ 		select * from tbl_review
+ 		where sId = #{sid} and status = 'T'
+ 		order by rno desc
+ 	</select>
+ 	
+ 	<!-- 관리자용 전체 리뷰 리스트 조회 -->
+ 	<select id="reviewListhole" resultType="ReviewVo">
+ 		select * from tbl_review
+ 		order by rno desc
+ 	</select>
+ 	
+ </mapper>

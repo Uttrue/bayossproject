@@ -40,9 +40,9 @@ $(function(){
 					</div>
 					<button type="submit" class="btn btn-primary">login</button>
 					<a style="float: right;" type="button" class="btn btn-primary"href="/user/joinus">joinus</a>
-					
-				</form>
-				<br>
+				</form><br>
+				<a style="float: right;" type="button" class="btn btn-primary"href="/seller/sellerlogin">SellerLogin</a>
+				<br><br>
 			</div>
 			<div class="col-md-4"></div>
 		</div>

@@ -27,24 +27,24 @@ $(function(){
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<div><br>
-					<h1>셀러 로그인</h1>
+					<h1>SELLER LOGIN</h1>
 				</div>
 				<form role="form" action="/seller/sellerloginrun" method="post">
 					<div class="form-group">
 
-						<label for="id"> 아이디 </label> 
+						<label for="id"> ID </label> 
 						<input type="text" class="form-control" required placeholder="아이디" id="sid" name="sid" />
 					</div>
 					<div class="form-group">
 
-						<label for="pw"> 비밀번호 </label> 
+						<label for="pw"> PASSWORD </label> 
 						<input type="password" class="form-control" required placeholder="비밀번호" id="spw" name="spw"/>
 					</div>
 					<div class="checkbox">
-						<label> <input type="checkbox" /> 아이디 저장</label>
+						<label> <input type="checkbox" /> ID save</label>
 					</div>
-					<button type="submit" class="btn btn-primary btnlogin">로그인</button>
-					<a style="float: right;" type="button" class="btn btn-primary"href="/seller/sellerjoin">회원가입</a>
+					<button type="submit" class="btn btn-primary btnlogin">login</button>
+					<a style="float: right;" type="button" class="btn btn-primary"href="/seller/sellerjoin">SELLERJOIN</a>
 				</form>
 				<br>
 			</div>

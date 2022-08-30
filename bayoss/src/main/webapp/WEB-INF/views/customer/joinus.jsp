@@ -208,7 +208,7 @@ $(function(){
 					</div>
 					<div class="form-group">
 						<label for="cell"> cellphone </label> <input
-							type="number" class="form-control" id="cellphone" name="cellphone" />
+							type="number" class="form-control" placeholder="only number" id="cellphone" name="cellphone" />
 					</div>
 					<button type="button" class="btn btn-primary btnjoin">join</button>
 					<button style="float: right;" type="button" class="btn btn-primary"
