@@ -27,8 +27,8 @@ public class adminController {
 	private HomeBoardService boardService;
 	
 //	final static String URLPATH = "bayoss/seller";
-	final static String URLPATH = "C://bayossfile"; //로컬개발
-//	final static String URLPATH = "/var/lib/tomcat9/webapps/ROOT/images/admin"; //서버 업로드용
+//	final static String URLPATH = "C://bayossfile"; //로컬개발
+	final static String URLPATH = "/var/lib/tomcat9/webapps/ROOT/images/admin"; //서버 업로드용
 
 	//홈 화면 등록 페이지
 	@RequestMapping(value = "/adminboardform", method = RequestMethod.GET)

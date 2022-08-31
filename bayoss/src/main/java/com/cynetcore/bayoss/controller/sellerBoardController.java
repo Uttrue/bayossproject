@@ -29,8 +29,8 @@ public class sellerBoardController {
 	private SellerItemService itemService;
 	
 //	final static String URLPATH = "bayoss/seller";
-	final static String URLPATH = "C://bayossfile"; //로컬개발
-//	final static String URLPATH = "/var/lib/tomcat9/webapps/ROOT/images"; //서버 업로드용
+//	final static String URLPATH = "C://bayossfile"; //로컬개발
+	final static String URLPATH = "/var/lib/tomcat9/webapps/ROOT/images"; //서버 업로드용
 
 	//셀러 물품 등록 페이지
 	@RequestMapping(value = "/sellerboardform", method = RequestMethod.GET)
