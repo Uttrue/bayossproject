@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!-- header  -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	//초기 변수 선언
@@ -60,6 +60,15 @@ $(function(){
 			$(".likenumber").text(rData);
 		});
 	}
+	//콤마 적용 - 적용 확인 데이터 넣기
+	var dbcost = $("#item_cost").text();
+	var cost = dbcost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	$("#item_cost").text(cost);
+	//금액 콤마 함수
+	function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
 		
 });
 </script>
@@ -102,9 +111,10 @@ $(function(){
 							style="border: none;" />
 					</div>
 					<div class="form-group">
-						<label for="item_cost"> 물품가격</label> <input
+						<label for="item_cost"> 물품가격</label> <%-- <input
 							type="number" class="form-control" disabled id="item_cost" value="${iteminfo.item_cost}" 
-							style="border: none;" />
+							style="border: none;" /> --%>
+						<div class="form-control" id="item_cost" style="border: none;" >${iteminfo.item_cost}</div>
 					</div>
 					<div class="form-group">
 						<label for="amount"> 수량</label>
