@@ -105,7 +105,6 @@ $(function(){
 				</div>
 			</div>
 </c:forEach>
-
         </div>
 		<div class="row mt-5">
 			<div class="col text-center">
