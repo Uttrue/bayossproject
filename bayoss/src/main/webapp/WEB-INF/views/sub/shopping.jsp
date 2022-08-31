@@ -32,7 +32,7 @@ $(function(){
 	//콤마 적용 - 적용 확인 데이터 넣기 - 수정요
 	var dbcost = "";
 	var cost = dbcost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	$("#tagcost").text(cost);
+	//$("#tagcost").text(cost);
 	//금액 콤마 함수
 	function comma(str) {
         str = String(str);
