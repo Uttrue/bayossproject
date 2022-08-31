@@ -4,7 +4,11 @@
 
 <!-- header  -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-
+<style>
+.detailtitle{
+	text-transform: uppercase;
+}
+</style>
 <c:forEach items="${boardVo}" begin="0" end="0" var="boardVo">
 <section class="ftco-counter" id="section-counter">
 	<div class="container">
@@ -13,7 +17,7 @@
 				class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
 				<div class="block-18 text-center">
 					<div class="detailtitle">
-						<span>${boardVo.main_category}</span>
+						<span>${boardVo.detail_category}</span>
 					</div>
 				</div>
 			</div>
