@@ -16,13 +16,14 @@ public class SellerItemVo {
 	private String sell_store_name;
 	private String item_delete;
 	private String reglocation;
+	private String category;
 	
 	public SellerItemVo() {
 		super();
 	}
 
 	public SellerItemVo(String sid, String item_title, int item_cost, Date item_start_date, String item_mainimage,
-			String item_content, String item_status,String reglocation) {
+			String item_content, String item_status,String reglocation,String category) {
 		super();
 		this.sid = sid;
 		this.item_title = item_title;
@@ -32,10 +33,11 @@ public class SellerItemVo {
 		this.item_content = item_content;
 		this.item_status = item_status;
 		this.reglocation = reglocation;
+		this.category = category;
 	}
 
 	public SellerItemVo(String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
-			String item_mainimage, String item_content, String item_status,String reglocation) {
+			String item_mainimage, String item_content, String item_status,String reglocation,String category) {
 		super();
 		this.sid = sid;
 		this.item_title = item_title;
@@ -46,12 +48,13 @@ public class SellerItemVo {
 		this.item_content = item_content;
 		this.item_status = item_status;
 		this.reglocation = reglocation;
+		this.category = category;
 	}
 	
 	
 
 	public SellerItemVo(String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
-			String item_mainimage, String item_content, int item_amount, String item_status,String reglocation) {
+			String item_mainimage, String item_content, int item_amount, String item_status,String reglocation,String category) {
 		super();
 		this.sid = sid;
 		this.item_title = item_title;
@@ -63,10 +66,11 @@ public class SellerItemVo {
 		this.item_amount = item_amount;
 		this.item_status = item_status;
 		this.reglocation = reglocation;
+		this.category = category;
 	}
 
 	public SellerItemVo(int ino, String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
-			String item_mainimage, String item_content, String item_status,String reglocation) {
+			String item_mainimage, String item_content, String item_status,String reglocation,String category) {
 		super();
 		this.ino = ino;
 		this.sid = sid;
@@ -78,13 +82,15 @@ public class SellerItemVo {
 		this.item_content = item_content;
 		this.item_status = item_status;
 		this.reglocation = reglocation;
+		this.category = category;
 	}
 
 	
 	
 	
 	public SellerItemVo(String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
-			String item_mainimage, String item_content, int item_amount, String sell_store_name, String item_status,String reglocation) {
+			String item_mainimage, String item_content, int item_amount, String sell_store_name, String item_status,
+			String reglocation,String category) {
 		super();
 		this.sid = sid;
 		this.item_title = item_title;
@@ -97,13 +103,14 @@ public class SellerItemVo {
 		this.sell_store_name = sell_store_name;
 		this.item_status = item_status;
 		this.reglocation = reglocation;
+		this.category = category;
 	}
 
 	
 
 	public SellerItemVo(int ino, String sid, String item_title, int item_cost, Date item_start_date, Date item_end_date,
 			String item_mainimage, String item_content, String item_status, int item_amount, String sell_store_name,
-			String item_delete,String reglocation) {
+			String item_delete,String reglocation,String category) {
 		super();
 		this.ino = ino;
 		this.sid = sid;
@@ -118,6 +125,7 @@ public class SellerItemVo {
 		this.sell_store_name = sell_store_name;
 		this.item_delete = item_delete;
 		this.reglocation = reglocation;
+		this.category = category;
 	}
 
 	public int getIno() {
@@ -224,15 +232,22 @@ public class SellerItemVo {
 		this.reglocation = reglocation;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "SellerItemVo [ino=" + ino + ", sid=" + sid + ", item_title=" + item_title + ", item_cost=" + item_cost
 				+ ", item_start_date=" + item_start_date + ", item_end_date=" + item_end_date + ", item_mainimage="
 				+ item_mainimage + ", item_content=" + item_content + ", item_status=" + item_status + ", item_amount="
 				+ item_amount + ", sell_store_name=" + sell_store_name + ", item_delete=" + item_delete
-				+ ", reglocation=" + reglocation + "]";
+				+ ", reglocation=" + reglocation + ", category=" + category + "]";
 	}
-
 	
 	
 	

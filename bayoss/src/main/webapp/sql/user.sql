@@ -32,5 +32,17 @@ create table tbl_review(
 	status char(1) default 'T'
 );
 
+create table tbl_request_service(
+	sno int not null AUTO_INCREMENT PRIMARY KEY,
+	category varchar(100) not null,
+	service varchar(500),
+	wname varchar(100) not null,
+	shipname varchar(500) not null,
+	phone int not null,
+	email varchar(100) not null,
+	wdate date not null,
+	wtime time not null,
+	message varchar(1000)
+);
 
 

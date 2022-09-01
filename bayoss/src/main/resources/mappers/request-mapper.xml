@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.cynetcore.bayoss.mappers.request">
+ 	<!-- 요청 회원가입 -->
+ 	<insert id="requestInsert">
+ 		insert into tbl_request_service(category, service,wname,shipname,phone ,email, wdate,message)
+		values(#{category},#{service},#{wname},#{shipname},#{phone},#{email},#{wdate},#{message})
+ 	</insert>
+ 	
+ 	<!-- 요청 리스트 조회 -->
+ 	<select id="requestList" resultType="RequestVo">
+ 		select * from tbl_request_service
+ 	</select>
+ 	
+ </mapper>

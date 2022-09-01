@@ -6,10 +6,10 @@
  	<!-- 아이템 등록 -->
  	<insert id="itemInsert">
  		insert into tbl_sell_item(sId, item_title, item_cost, item_start_date, item_end_date,item_mainimage,
- 								item_content,item_amount,sell_store_name, item_status, reglocation)
+ 								item_content,item_amount,sell_store_name, item_status, reglocation,category)
 		values(#{sid},#{item_title},#{item_cost},#{item_start_date, jdbcType=DATE},#{item_end_date, jdbcType=DATE},
 				#{item_mainimage, jdbcType=VARCHAR}, #{item_content},#{item_amount},
-				#{sell_store_name},#{item_status},#{reglocation})
+				#{sell_store_name},#{item_status},#{reglocation},#{category})
  	</insert>
  	
  	
@@ -30,7 +30,8 @@
 			item_content = #{item_content},
 			item_amount = #{item_amount},			
 			item_status = #{item_status},
-			reglocation = #{reglocation}			
+			reglocation = #{reglocation},
+			category = #{category}			
 		where ino = #{ino}
 	</update>
 	
@@ -78,6 +79,7 @@
  	<select id="itemListholecount" resultType="int">
  		select count(*) from tbl_sell_item
  		where item_delete = 'F'<include refid="search2"></include>
+ 		<!-- <include refid="searchCategory"></include> -->
  	</select>
  	
  	<!-- 아이템 전체 리스트 조회 -->
@@ -86,6 +88,7 @@
  			(SELECT * 
         	FROM tbl_sell_item
         	<include refid="search"></include> 
+        	<!-- <include refid="searchCategory"></include>  -->
         	order by ino desc) R1
        	order by ino desc
 		LIMIT #{perPage, jdbcType=INTEGER} OFFSET #{startRow, jdbcType=INTEGER}
@@ -136,5 +139,9 @@
  			</choose>
  		</if>
  	</sql>
- 
+ 	<sql id="searchCategory">
+ 		<if test="category != null">
+ 			and category = #{category}
+ 		</if>
+ 	</sql>
  </mapper>

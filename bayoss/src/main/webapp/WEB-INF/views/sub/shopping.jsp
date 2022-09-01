@@ -30,16 +30,6 @@ $(function(){
 			$("#frmSearch").attr("action" , "/sub/shopping").submit();
 		}
 	});
-	//콤마 적용 - 적용 확인 데이터 넣기
-	var dbcost = $("#tagcost").text();
-	var cost = dbcost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	$("#tagcost").text(cost);
-	//금액 콤마 함수
-	function comma(str) {
-        str = String(str);
-        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-    }
-	
 });
 </script>
 
@@ -99,7 +89,7 @@ $(function(){
 						<h3>${list.item_title}</h3>
 						<span class="position mb-2">${list.sell_store_name}</span>
 						<div class="faded">
-							<p id="tagcost">${list.item_cost}</p>
+							<p><fmt:formatNumber value="${list.item_cost}" pattern="#,###"/></p>
 							
 						</div>
 					</div>

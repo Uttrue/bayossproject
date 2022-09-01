@@ -1,5 +1,7 @@
 package com.cynetcore.bayoss.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cynetcore.bayoss.service.RequestService;
 import com.cynetcore.bayoss.service.UserService;
+import com.cynetcore.bayoss.vo.RequestVo;
 import com.cynetcore.bayoss.vo.UserVo;
 
 @Controller
@@ -23,6 +27,9 @@ public class userController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RequestService requestService;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -107,6 +114,17 @@ public class userController {
 		session.removeAttribute("userVo");
 		
 		return "redirect:/";
+	}
+	
+	//유저 서비스 요청
+	@RequestMapping(value = "/service", method = RequestMethod.GET)
+	public String userservice(RequestVo requestVo) {
+		System.out.println("userservice : " + requestVo);
+	
+		
+	//	requestVo.setWdate(date);
+	//	boolean result = requestService.requestInsert(requestVo);
+		return /*"redirect:/"*/"";
 	}
 	
 	//제일 하단에 두기
