@@ -11,7 +11,6 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
 		<property name="url" value="" />
-		<property name="username" value="" />
 		<property name="password" value="" />
 	</bean>
 	<!-- SqlSEssionBeanFactory bean 객체 생성 -->
