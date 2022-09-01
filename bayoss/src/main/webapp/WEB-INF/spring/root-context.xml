@@ -10,9 +10,9 @@
 	<!--  DataSource bean 객체 생성  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
-		<property name="url" value="jdbc:mariadb://dev.harbormax.com:3306/bayoss" />
-		<property name="username" value="bayoss" />
-		<property name="password" value="bayoss77**" />
+		<property name="url" value="" />
+		<property name="username" value="" />
+		<property name="password" value="" />
 	</bean>
 	<!-- SqlSEssionBeanFactory bean 객체 생성 -->
 
@@ -37,8 +37,8 @@
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.naver.com" />
         <property name="port" value="587" />
-        <property name="username" value="andy1324"/>
-        <property name="password" value="**bb7tkfkdgo10" />
+        <property name="username" value=""/>
+        <property name="password" value="" />
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.auth">true</prop>
